@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev -p 3001 -H 0.0.0.0",
     "build": "next build",
-    "start": "next start -p 3001",
+    "start": "next start -p ${PORT:-3001}",
     "lint": "next lint"
   },
   "keywords": ["saas", "nextjs", "bizheal", "auth"],
@@ -15,6 +15,22 @@
   "packageManager": "pnpm@10.12.4",
   "dependencies": {
     "@bizheal/ui": "workspace:*",
-    "@bizheal/db": "workspace:*"
+    "@bizheal/db": "workspace:*",
+    "next": "^15.5.3",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "next-auth": "^4.24.11",
+    "@auth/prisma-adapter": "^2.10.0",
+    "@prisma/client": "^6.16.2",
+    "bcryptjs": "^3.0.2",
+    "@types/bcryptjs": "^2.4.6",
+    "tailwindcss": "^3.4.17",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "typescript": "^5.9.2",
+    "@types/node": "^24.5.1",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "stripe": "^14.25.0"
   }
 }

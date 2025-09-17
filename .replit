@@ -1,0 +1,41 @@
+modules = ["nodejs-20", "web"]
+
+[nix]
+channel = "stable-25_05"
+packages = ["pnpm"]
+
+[agent]
+expertMode = true
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "BizHeal Marketing Website"
+
+[[workflows.workflow]]
+name = "BizHeal Marketing Website"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd apps/web && pnpm dev"
+waitForPort = 5000
+
+[workflows.workflow.metadata]
+outputType = "webview"
+
+[[ports]]
+localPort = 5000
+externalPort = 80
+
+[deployment]
+deploymentTarget = "autoscale"
+run = ["bash", "-c", "cd apps/web && pnpm start"]
+build = ["bash", "-c", "pnpm install --frozen-lockfile && cd apps/web && pnpm build"]
