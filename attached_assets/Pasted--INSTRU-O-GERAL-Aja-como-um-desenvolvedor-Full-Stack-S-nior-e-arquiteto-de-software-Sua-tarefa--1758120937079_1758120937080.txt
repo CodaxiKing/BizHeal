@@ -1,0 +1,105 @@
+[INSTRUÇÃO GERAL]
+Aja como um desenvolvedor Full-Stack Sênior e arquiteto de software. Sua tarefa é criar a estrutura fundacional completa para uma plataforma SaaS chamada "BizHeal". O projeto deve ser construído como um monorepo, separando o site de marketing da aplicação principal, e deve incluir toda a configuração para autenticação de usuários, gerenciamento de assinaturas pagas e um painel de administração básico.
+
+[VISÃO GERAL DO PROJETO]
+BizHeal é um SaaS que atua como um "médico digital para empresas", analisando dados para encontrar ineficiências e sugerindo soluções. Precisamos da infraestrutura web completa para suportar esta visão.
+
+[STACK DE TECNOLOGIA]
+- **Estrutura:** Monorepo utilizando `pnpm` workspaces.
+- **Frontend (Site e App):** Next.js 14+ com App Router, TypeScript, Tailwind CSS e Shadcn/UI para componentes.
+- **Backend:** API construída com NestJS e TypeScript.
+- **Banco de Dados:** PostgreSQL.
+- **ORM:** Prisma.
+- **Autenticação:** NextAuth.js (v5).
+- **Pagamentos:** Stripe para processamento de assinaturas.
+
+[ESTRUTURA DE ARQUIVOS (MONOREPO)]
+Crie a seguinte estrutura de diretórios na raiz do projeto:
+/
+├── apps/
+│   ├── web/      # O site de marketing (Next.js)
+│   └── app/      # A plataforma SaaS principal (Next.js)
+├── packages/
+│   ├── ui/       # Componentes React compartilhados (usando Shadcn/UI)
+│   ├── db/       # Schema do Prisma e cliente do banco de dados
+│   ├── config/   # Configurações compartilhadas (ESLint, TypeScript)
+└── package.json
+
+[ESCOPO DETALHADO POR APLICATIVO]
+
+---
+**1. `apps/web` (Site de Marketing)**
+---
+- **Propósito:** Atrair e converter visitantes em usuários. Deve ser estaticamente gerado para máxima performance (SSG).
+- **Páginas:**
+    - **Home (`/`):** Título chamativo ("O Médico Digital da sua Empresa"), subtítulo explicando o problema que resolve, um botão CTA principal ("Comece seu Diagnóstico Grátis") que leva para a página de registro em `app.bizheal.com/register`.
+    - **Funcionalidades (`/features`):** Descreva as funcionalidades chave: "Scanner de Gargalos", "Prescrição Automática", "Cicatrização Contínua".
+    - **Preços (`/pricing`):** Crie uma seção com 3 planos de assinatura:
+        - **Básico (Freemium):** Scanner básico, 1 relatório/mês.
+        - **Pro:** Relatórios ilimitados, integrações, alertas inteligentes.
+        - **Enterprise:** IA Preditiva, workflows, suporte dedicado.
+        - Cada plano deve ter um botão CTA. O plano "Básico" leva ao registro. Os planos "Pro" e "Enterprise" levam diretamente para o checkout do Stripe após o registro.
+    - **Login (`/login`):** Um botão que redireciona para a página de login em `app.bizheal.com/login`.
+
+---
+**2. `apps/app` (Plataforma SaaS)**
+---
+- **Propósito:** A aplicação principal onde os usuários logados acessam as funcionalidades.
+- **Autenticação (NextAuth.js):**
+    - Implemente login com Provedor de Email/Senha e Provedor do Google (OAuth).
+    - Crie as páginas: `/login`, `/register`, `/forgot-password`.
+    - Crie rotas protegidas que só podem ser acessadas por usuários autenticados.
+- **Onboarding:** Após o primeiro login, exiba um formulário multi-etapas para coletar informações básicas da empresa (nome, setor, principal desafio). Salve esses dados no banco.
+- **Dashboard Principal (`/dashboard`):**
+    - Esta será a página principal após o login.
+    - Crie um layout de dashboard com componentes de placeholder para:
+        - KPIs principais (use dados mockados): Faturamento, Despesas, Lucro, Churn.
+        - Um componente "Scanner de Saúde" com um semáforo (Verde, Amarelo, Vermelho).
+        - Uma lista de "Alertas e Recomendações" (ex: "Alerta: 20% dos seus clientes estão inativos. Ação: Iniciar campanha de reativação.").
+- **Gerenciamento de Assinatura (`/settings/billing`):**
+    - Mostre o plano atual do usuário (Básico, Pro, etc.).
+    - Integre com o **Stripe Customer Portal**. Adicione um botão "Gerenciar Assinatura" que redireciona o usuário para o portal do Stripe, onde ele pode atualizar o plano, método de pagamento ou cancelar.
+
+---
+**3. Backend e Pagamentos (NestJS API + Stripe)**
+---
+- **API (NestJS):** Crie os seguintes endpoints básicos:
+    - `/users`: para gerenciar dados do usuário.
+    - `/subscriptions`: para verificar o status da assinatura do usuário.
+- **Integração com Stripe:**
+    - Crie um endpoint para iniciar uma sessão de checkout do Stripe quando um usuário escolhe um plano pago.
+    - Crie um webhook (`/api/webhooks/stripe`) para receber eventos do Stripe. Ele deve ouvir, no mínimo:
+        - `checkout.session.completed`: para provisionar o acesso ao plano quando o pagamento for bem-sucedido.
+        - `customer.subscription.updated` e `customer.subscription.deleted`: para atualizar o status da assinatura do usuário no seu banco de dados (upgrade, downgrade, cancelamento).
+
+---
+**4. `packages/db` (Banco de Dados com Prisma)**
+---
+- Crie um `schema.prisma` com os seguintes modelos:
+    - `User`: com campos para `id`, `name`, `email`, `emailVerified`, `image`, `password`, e um campo `role` (com valores `USER` ou `ADMIN`).
+    - `Account`, `Session`, `VerificationToken`: modelos padrão necessários para o NextAuth.js.
+    - `Subscription`: para armazenar o `userId`, `stripeCustomerId`, `stripeSubscriptionId`, `stripePriceId`, e o `status` da assinatura.
+    - `BusinessProfile`: para armazenar os dados do onboarding.
+
+---
+**5. Painel de Administração (Funcionalidade Essencial)**
+---
+- **Implementação:** Crie uma rota protegida em `apps/app`, por exemplo, `/admin`.
+- **Lógica de Acesso:** Apenas usuários com `role` igual a `ADMIN` no banco de dados podem acessar esta página.
+- **Funcionalidades Mínimas:**
+    - Uma tabela que lista todos os usuários registrados (`User`).
+    - A tabela deve mostrar o email do usuário e o status atual da sua assinatura (buscando a informação do modelo `Subscription`).
+    - Capacidade de clicar em um usuário e visualizar mais detalhes.
+    - (Bônus) Um botão para alterar a `role` de um usuário de `USER` para `ADMIN`.
+
+[PASSOS DE EXECUÇÃO PARA A IA]
+1.  Configure a estrutura do monorepo com `pnpm`.
+2.  Instale todas as dependências necessárias em seus respectivos workspaces (`apps/web`, `apps/app`, `packages/*`).
+3.  Gere o `schema.prisma` completo conforme especificado.
+4.  Construa a estrutura de arquivos e o código para o site de marketing (`apps/web`).
+5.  Construa a estrutura de arquivos e o código para a plataforma SaaS (`apps/app`), implementando a autenticação com NextAuth.js e as páginas do dashboard.
+6.  Implemente a lógica de integração com o Stripe, incluindo a sessão de checkout e o webhook.
+7.  Crie o painel de administração básico com proteção de rota baseada em `role`.
+8.  Use componentes do Shadcn/UI para criar uma interface limpa e moderna.
+9.  Adicione comentários claros em partes complexas do código, especialmente na lógica do webhook do Stripe.
+10. Crie um arquivo `README.md` detalhado na raiz do projeto com instruções sobre como configurar o ambiente (`.env`), rodar o banco de dados (`prisma migrate dev`) e iniciar os projetos.
