@@ -1,12 +1,34 @@
-// NextAuth.js v5 Configuration for BizHeal SaaS
-import NextAuth from "next-auth"
+// NextAuth.js v4 Configuration for BizHeal SaaS
+import NextAuth, { type NextAuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import GoogleProvider from "next-auth/providers/google"
 import { PrismaAdapter } from "@auth/prisma-adapter"
-import { prisma } from "@/db"
+import { prisma } from "@bizheal/db"
 import bcrypt from "bcryptjs"
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
+declare module "next-auth" {
+  interface Session {
+    user: {
+      id: string
+      email: string
+      name?: string | null
+      image?: string | null
+      role?: string
+    }
+  }
+  
+  interface User {
+    role?: string
+  }
+}
+
+declare module "next-auth/jwt" {
+  interface JWT {
+    role?: string
+  }
+}
+
+export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
@@ -56,14 +78,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     strategy: "jwt",
   },
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user }: { token: any; user: any }) {
       if (user) {
         token.role = user.role
       }
       return token
     },
-    async session({ session, token }) {
-      if (token) {
+    async session({ session, token }: { session: any; token: any }) {
+      if (token && session.user) {
         session.user.id = token.sub!
         session.user.role = token.role as string
       }
@@ -72,7 +94,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   pages: {
     signIn: "/login",
-    signUp: "/register",
   },
   secret: process.env.NEXTAUTH_SECRET,
-})
+}
+
+export const { handlers, signIn, signOut, auth } = NextAuth(authOptions)
