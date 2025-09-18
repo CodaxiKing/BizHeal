@@ -95,6 +95,12 @@ export default function RegisterPage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
+          <Link 
+            href="/" 
+            className="flex items-center justify-center mx-auto mb-4 text-gray-600 hover:text-blue-600 transition-colors"
+          >
+            ← Voltar ao início
+          </Link>
           <div className="mx-auto h-12 w-12 flex items-center justify-center rounded-full bg-blue-100">
             <span className="text-2xl">🩺</span>
           </div>

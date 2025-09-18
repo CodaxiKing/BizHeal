@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { Button, Card, CardContent, CardHeader, CardTitle } from '@bizheal/ui'
@@ -28,6 +28,12 @@ export default function OnboardingPage() {
   })
 
   // Redirect if not authenticated
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      router.push('/login')
+    }
+  }, [status, router])
+
   if (status === 'loading') {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -40,7 +46,6 @@ export default function OnboardingPage() {
   }
 
   if (!session) {
-    router.push('/login')
     return null
   }
 

@@ -49,5 +49,5 @@ externalPort = 3002
 
 [deployment]
 deploymentTarget = "autoscale"
-run = ["pnpm", "start"]
-build = ["pnpm", "build"]
+run = ["bash", "-c", "cd apps/app && pnpm start"]
+build = ["bash", "-c", "cd apps/app && pnpm build"]
