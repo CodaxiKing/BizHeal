@@ -52,18 +52,20 @@ export default function HomePage() {
               >
                 Início
               </button>
-              <button 
-                onClick={() => router.push('/features')}
+              <a 
+                href="/features"
+                target="_blank"
                 className="text-gray-700 hover:text-blue-600"
               >
                 Funcionalidades
-              </button>
-              <button 
-                onClick={() => router.push('/pricing')}
+              </a>
+              <a 
+                href="/pricing"
+                target="_blank"
                 className="text-gray-700 hover:text-blue-600"
               >
                 Preços
-              </button>
+              </a>
               <button 
                 onClick={() => router.push('/login')}
                 className="text-gray-700 hover:text-blue-600"

@@ -1,0 +1,141 @@
+Excelente! Essa é a abordagem correta. Vamos construir o que ficou faltando em etapas lógicas, com um prompt para cada parte.
+
+A sequência que seguiremos é a mais sensata para o desenvolvimento de um produto:
+
+Obter Dados: Primeiro, precisamos de dados dentro da plataforma. Começaremos com a forma mais simples (upload de CSV).
+
+Gerar Inteligência: Com os dados lá dentro, criaremos a primeira análise inteligente (o Scanner).
+
+Visualizar a Inteligência: Vamos transformar os resultados dessa análise em gráficos fáceis de entender.
+
+Garantir a Qualidade: Adicionaremos testes para garantir que nossa lógica de negócio funcione corretamente.
+
+Aqui estão os prompts, parte por parte. Execute um de cada vez no seu ambiente de desenvolvimento.
+
+Prompt Parte 1: Implementando a Importação de Dados via CSV (MVP)
+Objetivo: Permitir que o usuário suba um arquivo CSV com seus dados de vendas para que o BizHeal tenha o que analisar.
+
+Snippet de código
+
+[INSTRUÇÃO GERAL]
+Aja como um Desenvolvedor Full-Stack Sênior. Sua tarefa é implementar uma funcionalidade de importação de dados via CSV no SaaS BizHeal. Você deve criar a interface no frontend para o upload e o endpoint no backend para processar e salvar os dados.
+
+[CONTEXTO]
+Estamos trabalhando no monorepo do BizHeal. As alterações no frontend serão em `apps/app` (Next.js) e no backend em sua API NestJS. O banco de dados usa Prisma.
+
+[REQUISITOS]
+
+**1. Alterações no Banco de Dados (`packages/db/schema.prisma`):**
+- Crie um novo modelo para armazenar transações individuais. Isso é mais granular e útil que o modelo `KpiData`. Adicione o seguinte modelo:
+
+  ```prisma
+  model Transaction {
+    id          String   @id @default(cuid())
+    date        DateTime
+    amount      Float
+    customerId  String
+    description String?
+    businessId  String
+    business    BusinessProfile @relation(fields: [businessId], references: [id])
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+  }
+No modelo BusinessProfile, adicione a relação inversa: transactions Transaction[].
+
+Após adicionar, lembre o usuário de rodar pnpm prisma generate e pnpm prisma migrate dev.
+
+2. Frontend (apps/app):
+
+Crie uma nova página em /dashboard/import.
+
+Nesta página, use os componentes do Shadcn/UI (Card, Input, Button) para criar uma interface de upload de arquivo.
+
+Adicione a biblioteca papaparse para fazer o parsing do CSV no navegador (é mais eficiente).
+
+O CSV esperado terá as colunas: data_venda, valor, id_cliente.
+
+Após o usuário selecionar o arquivo, faça o parsing e envie os dados como um JSON para um novo endpoint no backend.
+
+Mostre um feedback visual para o usuário (ex: "Dados importados com sucesso!" ou "Ocorreu um erro.").
+
+3. Backend (API NestJS):
+
+Crie um novo módulo (DataModule) e um novo controller (DataController).
+
+Crie um endpoint POST /data/upload que seja protegido e só acessível por usuários autenticados.
+
+O endpoint deve receber um array de objetos JSON (transações).
+
+Crie um DataService que pegue esses dados e use o Prisma para salvá-los no modelo Transaction, associando-os ao businessId do usuário logado.
+
+Implemente tratamento de erros básico (ex: se os dados vierem em formato incorreto).
+
+
+---
+
+### Prompt Parte 2: Criando o "Scanner de Churn" (Primeira Lógica de Negócio)
+
+**Objetivo:** Usar os dados importados para criar a primeira análise inteligente: identificar clientes com risco de churn.
+
+```prompt
+[INSTRUÇÃO GERAL]
+Aja como um Desenvolvedor Full-Stack Sênior. Sua tarefa é criar a primeira funcionalidade de análise inteligente do BizHeal: um "Scanner de Risco de Churn". Você irá criar a lógica no backend e exibir os resultados no frontend.
+
+[CONTEXTO]
+Os dados de transações já estão sendo salvos no banco de dados (`Transaction`). Agora vamos analisá-los.
+
+[REQUISITOS]
+
+**1. Backend (API NestJS):**
+- Crie um novo módulo (`AnalysisModule`) e um `AnalysisService`.
+- No `AnalysisService`, crie um método chamado `calculateChurnRisk(businessId: string)`.
+- A lógica de negócio será simples por enquanto:
+    1. Busque todas as transações do `businessId`.
+    2. Agrupe as transações por `customerId`.
+    3. Para cada cliente, encontre a data da última transação.
+    4. Se a última transação foi há mais de 90 dias (a partir da data atual), o cliente é considerado "em risco".
+- Crie um `AnalysisController` com um endpoint `GET /analysis/churn-risk`.
+- Este endpoint deve chamar o serviço e retornar um JSON com:
+    - `totalCustomers`: número total de clientes.
+    - `atRiskCustomersCount`: número de clientes em risco.
+    - `atRiskCustomersList`: um array com os IDs dos clientes em risco e a data da última compra.
+
+**2. Frontend (`apps/app`):**
+- Na página principal do Dashboard (`/dashboard`), crie uma nova seção chamada "Saúde dos Clientes".
+- Crie um novo componente React que faz uma chamada (fetch) para o endpoint `/analysis/churn-risk`.
+- Use os componentes `Card` do Shadcn/UI para exibir os números principais (`totalCustomers` e `atRiskCustomersCount`).
+- Use um componente `Table` do Shadcn/UI para listar os clientes em risco (`atRiskCustomersList`), mostrando o ID do cliente e há quantos dias foi a última compra.
+- Adicione um indicador visual de alerta (um ícone de "⚠️") se o número de clientes em risco for maior que 0.
+Prompt Parte 3: Adicionando Gráficos e Visualização de Dados
+Objetivo: Transformar os dados brutos em um gráfico visualmente compreensível no dashboard.
+
+Snippet de código
+
+[INSTRUÇÃO GERAL]
+Aja como um Desenvolvedor Frontend Sênior. Sua tarefa é adicionar visualização de dados ao dashboard do BizHeal, criando um gráfico de barras para mostrar o faturamento mensal.
+
+[CONTEXTO]
+A aplicação `apps/app` usa Next.js e Shadcn/UI. Vamos adicionar uma biblioteca de gráficos para enriquecer a experiência do usuário.
+
+[REQUISITOS]
+
+**1. Instalação de Dependência:**
+- Adicione a biblioteca `recharts` ao projeto `apps/app`.
+
+**2. Backend (API NestJS):**
+- No `AnalysisService`, crie um novo método `getMonthlyRevenue(businessId: string)`.
+- A lógica deve:
+    1. Buscar todas as transações do `businessId` do último ano.
+    2. Agrupar as transações por mês e somar o `amount` de cada mês.
+- Crie um novo endpoint no `AnalysisController`: `GET /analysis/monthly-revenue`.
+- O endpoint deve retornar um array de objetos no formato: `[{ "month": "Set/25", "revenue": 15000 }, { "month": "Ago/25", "revenue": 12500 }, ...]`.
+
+**3. Frontend (`apps/app`):**
+- Na página do Dashboard (`/dashboard`), crie um novo componente `MonthlyRevenueChart`.
+- Este componente deve fazer uma chamada para o endpoint `/analysis/monthly-revenue`.
+- Use a biblioteca `Recharts` para renderizar um `BarChart` (gráfico de barras) com os dados recebidos.
+- O eixo X deve mostrar o mês (`month`) e o eixo Y o faturamento (`revenue`).
+- Coloque o gráfico dentro de um `Card` do Shadcn/UI com o título "Faturamento Mensal (Últimos 12 Meses)".
+Prompt Parte 4: Implementando Testes Automatizados no Backend
+Objetivo: Garantir a qualidade e a confiabilidade da nossa lógica de negócio principal, adicionando testes unitários.
