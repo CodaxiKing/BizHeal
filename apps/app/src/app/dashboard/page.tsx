@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle, Button } from '@bizheal/ui'
 import CustomerHealthSection from '@/components/CustomerHealthSection'
+import MonthlyRevenueChart from '@/components/MonthlyRevenueChart'
 
 export default function DashboardPage() {
   const { data: session, status } = useSession()
@@ -175,6 +176,11 @@ export default function DashboardPage() {
         {/* Customer Health Section */}
         <div className="mb-8">
           <CustomerHealthSection />
+        </div>
+
+        {/* Monthly Revenue Chart */}
+        <div className="mb-8">
+          <MonthlyRevenueChart />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
