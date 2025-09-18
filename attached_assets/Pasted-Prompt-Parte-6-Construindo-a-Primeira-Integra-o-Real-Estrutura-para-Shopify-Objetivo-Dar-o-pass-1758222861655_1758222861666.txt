@@ -1,0 +1,58 @@
+Prompt Parte 6: Construindo a Primeira Integração Real (Estrutura para Shopify)
+Objetivo: Dar o passo mais importante para sair do MVP: substituir o upload manual por uma conexão automática. Vamos criar a estrutura para integrações e simular a primeira com a Shopify.
+
+[INSTRUÇÃO GERAL]
+Aja como um Arquiteto de Software. Sua tarefa é projetar e implementar a estrutura fundamental para integrações de terceiros no BizHeal. Você criará a base no backend e no frontend para conectar a primeira plataforma de e-commerce, a Shopify.
+
+[CONTEXTO]
+Esta é uma funcionalidade complexa. Precisamos de um sistema seguro para gerenciar chaves de API e uma forma de sincronizar os dados.
+
+[REQUISITOS]
+
+**1. Alterações no Banco de Dados (`packages/db/schema.prisma`):**
+- Crie um novo modelo para armazenar as conexões/integrações de uma empresa:
+  ```prisma
+  model Integration {
+    id           String   @id @default(cuid())
+    platform     String   // ex: "shopify", "bling", "conta_azul"
+    accessToken  String   @db.Text // Chaves e tokens devem ser criptografados
+    refreshToken String?  @db.Text
+    scopes       String?
+    shopUrl      String?  // Específico para Shopify
+    lastSync     DateTime?
+    businessId   String   @unique // No início, uma empresa só pode ter uma integração por plataforma
+    business     BusinessProfile @relation(fields: [businessId], references: [id])
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+  }
+
+ No modelo BusinessProfile, adicione a relação inversa: integrations Integration[].
+
+Importante: Em produção, os tokens (accessToken, refreshToken) DEVEM ser criptografados antes de salvar no banco. Adicione um comentário no schema sobre isso.
+
+2. Backend (API NestJS):
+
+Crie um novo IntegrationModule.
+
+Crie um IntegrationService com métodos para:
+
+connectToShopify(authCode: string, shopUrl: string, businessId: string): Método que simula o fluxo OAuth 2.0. Ele receberia o código de autorização da Shopify e o trocaria por um accessToken. Por enquanto, ele apenas salvará os dados no banco.
+
+syncShopifyData(businessId: string): Um método que, futuramente, usaria o accessToken salvo para buscar pedidos (transações) da API da Shopify e salvá-los no nosso modelo Transaction.
+
+getIntegrations(businessId: string): Retorna as integrações ativas.
+
+Crie um IntegrationController com os endpoints correspondentes.
+
+3. Frontend (apps/app):
+
+Crie uma nova página em /dashboard/integrations.
+
+Nesta página, mostre uma galeria de integrações disponíveis (comece com Shopify, Bling e Conta Azul em cards, mas apenas o da Shopify será clicável).
+
+Ao clicar em "Conectar" na Shopify, redirecione o usuário para uma URL de autorização simulada.
+
+Crie uma página de callback em /integrations/callback/shopify que simulará o recebimento do código de autorização e o enviará para o seu backend para finalizar a conexão.
+
+Na página /dashboard/integrations, após a conexão, exiba a Shopify como "Conectada ✅" e adicione um botão "Sincronizar Dados", que chamará o endpoint syncShopifyData.

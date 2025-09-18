@@ -110,6 +110,7 @@ model BusinessProfile {
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   transactions Transaction[]
+  integrations Integration[]
 }
 
 // Transaction data for business analysis
@@ -126,4 +127,23 @@ model Transaction {
   updatedAt DateTime @updatedAt
 
   @@unique([businessId, customerId, date, amount])
+}
+
+// Third-party integrations for automated data sync
+// IMPORTANT: accessToken and refreshToken MUST be encrypted before storing in production
+model Integration {
+  id           String   @id @default(cuid())
+  platform     String   // ex: "shopify", "bling", "conta_azul"
+  accessToken  String   @db.Text // Chaves e tokens devem ser criptografados em produção
+  refreshToken String?  @db.Text // Chaves e tokens devem ser criptografados em produção
+  scopes       String?
+  shopUrl      String?  // Específico para Shopify
+  lastSync     DateTime?
+  businessId   String
+  business     BusinessProfile @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([businessId, platform]) // Uma empresa só pode ter uma integração por plataforma
 }

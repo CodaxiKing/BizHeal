@@ -38,6 +38,14 @@ export async function POST(request: NextRequest) {
     let stripeCustomerId = customer?.subscription?.stripeCustomerId
 
     if (!stripeCustomerId) {
+      // Check if Stripe is configured
+      if (!stripe) {
+        return NextResponse.json(
+          { error: 'Stripe não configurado' },
+          { status: 500 }
+        )
+      }
+      
       // Create Stripe customer
       const stripeCustomer = await stripe.customers.create({
         email: session.user.email!,
@@ -61,6 +69,14 @@ export async function POST(request: NextRequest) {
       })
     }
 
+    // Check if Stripe is configured
+    if (!stripe) {
+      return NextResponse.json(
+        { error: 'Stripe não configurado' },
+        { status: 500 }
+      )
+    }
+    
     // Create Stripe Checkout session
     const checkoutSession = await stripe.checkout.sessions.create({
       customer: stripeCustomerId,

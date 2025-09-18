@@ -30,6 +30,14 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Check if Stripe is configured
+    if (!stripe) {
+      return NextResponse.json(
+        { error: 'Stripe não configurado' },
+        { status: 500 }
+      )
+    }
+    
     // Create Stripe Billing Portal session
     const portalSession = await stripe.billingPortal.sessions.create({
       customer: subscription.stripeCustomerId,

@@ -13,6 +13,13 @@ export async function POST(request: NextRequest) {
   let event: Stripe.Event
 
   try {
+    if (!stripe) {
+      return NextResponse.json(
+        { error: 'Stripe não configurado' },
+        { status: 500 }
+      )
+    }
+    
     event = stripe.webhooks.constructEvent(
       body,
       signature,
@@ -85,6 +92,11 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
   }
 
   // Get subscription details from Stripe
+  if (!stripe) {
+    console.error('Stripe not configured for checkout completion')
+    return
+  }
+  
   const subscription = await stripe.subscriptions.retrieve(subscriptionId)
   
   // Update database with subscription details
