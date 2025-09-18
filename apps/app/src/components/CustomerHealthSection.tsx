@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Card, CardContent, CardHeader, CardTitle } from '@bizheal/ui'
+import { Card, CardContent, CardHeader, CardTitle, Button } from '@bizheal/ui'
 
 interface ChurnAnalysis {
   totalCustomers: number
@@ -43,6 +43,8 @@ export default function CustomerHealthSection() {
   const [data, setData] = useState<ChurnAnalysis | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [exportLoading, setExportLoading] = useState(false)
+  const [exportMessage, setExportMessage] = useState<string | null>(null)
 
   useEffect(() => {
     fetchChurnAnalysis()
@@ -143,6 +145,51 @@ export default function CustomerHealthSection() {
     }
   }
 
+  const handleExportCSV = async () => {
+    if (!data || data.atRiskCustomersCount === 0) {
+      setExportMessage('Nenhum cliente em risco para exportar.')
+      setTimeout(() => setExportMessage(null), 3000)
+      return
+    }
+
+    try {
+      setExportLoading(true)
+      setExportMessage(null)
+
+      const response = await fetch('/api/analysis/churn-risk?format=csv')
+      
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}))
+        throw new Error(errorData.error || `Erro ${response.status}: Falha ao exportar dados`)
+      }
+
+      // Get the CSV content as a blob
+      const blob = await response.blob()
+      
+      // Create download link
+      const url = window.URL.createObjectURL(blob)
+      const link = document.createElement('a')
+      link.href = url
+      link.download = 'clientes_em_risco.csv'
+      document.body.appendChild(link)
+      link.click()
+      
+      // Cleanup
+      document.body.removeChild(link)
+      window.URL.revokeObjectURL(url)
+      
+      setExportMessage('Exportação concluída com sucesso!')
+      setTimeout(() => setExportMessage(null), 3000)
+      
+    } catch (error) {
+      console.error('Export error:', error)
+      setExportMessage(error instanceof Error ? error.message : 'Erro ao exportar dados. Tente novamente.')
+      setTimeout(() => setExportMessage(null), 5000)
+    } finally {
+      setExportLoading(false)
+    }
+  }
+
   return (
     <div className="space-y-6">
       {/* Summary Cards */}
@@ -236,10 +283,33 @@ export default function CustomerHealthSection() {
       {data.atRiskCustomersList.length > 0 && (
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center">
-              <span className="mr-2">⚠️</span>
-              Clientes em Risco de Churn
-            </CardTitle>
+            <div className="flex items-center justify-between">
+              <CardTitle className="flex items-center">
+                <span className="mr-2">⚠️</span>
+                Clientes em Risco de Churn
+              </CardTitle>
+              <div className="flex flex-col items-end gap-2">
+                <Button 
+                  onClick={handleExportCSV}
+                  variant="outline"
+                  size="sm"
+                  className="flex items-center gap-2"
+                  disabled={exportLoading || !data || data.atRiskCustomersCount === 0}
+                >
+                  <span>{exportLoading ? '⏳' : '📥'}</span>
+                  {exportLoading ? 'Exportando...' : 'Exportar para CSV'}
+                </Button>
+                {exportMessage && (
+                  <div className={`text-xs px-2 py-1 rounded ${
+                    exportMessage.includes('sucesso') 
+                      ? 'text-green-700 bg-green-100' 
+                      : 'text-red-700 bg-red-100'
+                  }`}>
+                    {exportMessage}
+                  </div>
+                )}
+              </div>
+            </div>
           </CardHeader>
           <CardContent>
             <div className="overflow-x-auto">

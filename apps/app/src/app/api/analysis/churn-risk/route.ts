@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@bizheal/db'
+import Papa from 'papaparse'
 
 interface CustomerActivity {
   customerId: string
@@ -21,6 +22,10 @@ export async function GET(request: NextRequest) {
         { status: 401 }
       )
     }
+
+    // Check if CSV format is requested
+    const { searchParams } = new URL(request.url)
+    const format = searchParams.get('format')
 
     // Get user's business profile
     const user = await prisma.user.findUnique({
@@ -155,6 +160,59 @@ export async function GET(request: NextRequest) {
           date: t.date.toISOString()
         }))
       }
+    }
+
+    // If CSV format is requested, generate and return CSV
+    if (format === 'csv') {
+      // Helper function to sanitize CSV fields against formula injection
+      const sanitizeCSVField = (value: string | number): string => {
+        const strValue = String(value)
+        // Detect optional leading whitespace/control chars before dangerous tokens
+        // This prevents bypasses like ' =1+1', '\t=1+1', '\uFEFF=1+1'
+        if (/^[\s\u0000-\u001F\uFEFF]*[=+\-@]/.test(strValue)) {
+          return `'${strValue}`
+        }
+        return strValue
+      }
+
+      // Get ALL at-risk customers (not just the sliced UI list)
+      const allAtRiskCustomers = customerActivities.filter(
+        customer => customer.daysSinceLastTransaction >= churnThresholdDays
+      ).map(customer => ({
+        ...customer,
+        riskLevel: customer.daysSinceLastTransaction > 180 ? 'high' : 
+                  customer.daysSinceLastTransaction > 90 ? 'medium' : 'low'
+      }))
+
+      // Prepare CSV data with improved formatting and sanitization
+      const csvData = allAtRiskCustomers.map(customer => ({
+        'ID do Cliente': sanitizeCSVField(customer.customerId),
+        'Última Transação': sanitizeCSVField(new Date(customer.lastTransactionDate).toLocaleDateString('pt-BR')),
+        'Dias Inativo': customer.daysSinceLastTransaction,
+        'Total de Vendas': customer.totalTransactions,
+        'Receita Total (R$)': customer.totalAmount.toFixed(2), // Numeric value without currency symbol
+        'Nível de Risco': sanitizeCSVField(customer.riskLevel === 'high' ? 'Alto Risco' :
+                                           customer.riskLevel === 'medium' ? 'Médio Risco' : 'Baixo Risco')
+      }))
+
+      // Generate CSV content with UTF-8 BOM and semicolon delimiter for Portuguese Excel
+      const csv = Papa.unparse(csvData, {
+        delimiter: ';', // Better for Portuguese Excel
+        header: true
+      })
+
+      // Add UTF-8 BOM for proper Excel encoding
+      const csvWithBOM = '\ufeff' + csv
+
+      // Return CSV response with proper headers
+      return new NextResponse(csvWithBOM, {
+        status: 200,
+        headers: {
+          'Content-Type': 'text/csv; charset=utf-8',
+          'Content-Disposition': 'attachment; filename="clientes_em_risco.csv"',
+          'Cache-Control': 'no-cache'
+        }
+      })
     }
 
     return NextResponse.json(response)

@@ -65,6 +65,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../src/app/dashboard/integrations/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/dashboard/integrations">> = Specific
+  const handler = {} as typeof import("../../src/app/dashboard/integrations/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../src/app/dashboard/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/dashboard">> = Specific
@@ -87,6 +96,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 {
   type __IsExpected<Specific extends AppPageConfig<"/forgot-password">> = Specific
   const handler = {} as typeof import("../../src/app/forgot-password/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../src/app/integrations/callback/shopify/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/integrations/callback/shopify">> = Specific
+  const handler = {} as typeof import("../../src/app/integrations/callback/shopify/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
@@ -222,6 +240,33 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/data/upload">> = Specific
   const handler = {} as typeof import("../../src/app/api/data/upload/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../src/app/api/integration/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/integration">> = Specific
+  const handler = {} as typeof import("../../src/app/api/integration/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../src/app/api/integration/shopify/connect/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/integration/shopify/connect">> = Specific
+  const handler = {} as typeof import("../../src/app/api/integration/shopify/connect/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../src/app/api/integration/shopify/sync/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/integration/shopify/sync">> = Specific
+  const handler = {} as typeof import("../../src/app/api/integration/shopify/sync/route.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
