@@ -45,6 +45,16 @@ export interface ChurnAnalysisResult {
   }
 }
 
+export interface RevenueConcentrationResult {
+  totalRevenue: number
+  top5CustomersRevenue: number
+  concentrationPercentage: number
+  top5CustomersList: Array<{
+    customerId: string
+    revenue: number
+  }>
+}
+
 export class AnalysisService {
   private static readonly CHURN_THRESHOLD_DAYS = 90 // 90 days without activity = at risk
   private static readonly HIGH_RISK_THRESHOLD_DAYS = 180 // 6 months
@@ -259,5 +269,52 @@ export class AnalysisService {
     if (daysSinceLastTransaction > this.HIGH_RISK_THRESHOLD_DAYS) return 'high'
     if (daysSinceLastTransaction > this.MEDIUM_RISK_THRESHOLD_DAYS) return 'medium'
     return 'low'
+  }
+
+  /**
+   * Calculate revenue concentration analysis for a list of transactions
+   * @param transactions Array of transactions to analyze
+   * @returns RevenueConcentrationResult object with concentration analysis
+   */
+  public static calculateRevenueConcentration(transactions: Transaction[]): RevenueConcentrationResult {
+    if (transactions.length === 0) {
+      return {
+        totalRevenue: 0,
+        top5CustomersRevenue: 0,
+        concentrationPercentage: 0,
+        top5CustomersList: []
+      }
+    }
+
+    // 1. Calculate total revenue (sum of all transaction amounts)
+    const totalRevenue = transactions.reduce((sum, transaction) => sum + transaction.amount, 0)
+
+    // 2. Group transactions by customerId and calculate revenue per customer
+    const customerRevenueMap = new Map<string, number>()
+    transactions.forEach(transaction => {
+      const currentRevenue = customerRevenueMap.get(transaction.customerId) || 0
+      customerRevenueMap.set(transaction.customerId, currentRevenue + transaction.amount)
+    })
+
+    // 3. Convert to array and sort by revenue (highest first)
+    const customerRevenueArray = Array.from(customerRevenueMap.entries())
+      .map(([customerId, revenue]) => ({ customerId, revenue }))
+      .sort((a, b) => b.revenue - a.revenue)
+
+    // 4. Get top 5 customers
+    const top5Customers = customerRevenueArray.slice(0, 5)
+
+    // 5. Calculate revenue of top 5 customers
+    const top5CustomersRevenue = top5Customers.reduce((sum, customer) => sum + customer.revenue, 0)
+
+    // 6. Calculate concentration percentage
+    const concentrationPercentage = totalRevenue > 0 ? (top5CustomersRevenue / totalRevenue) * 100 : 0
+
+    return {
+      totalRevenue,
+      top5CustomersRevenue,
+      concentrationPercentage: Math.round(concentrationPercentage * 100) / 100, // Round to 2 decimal places
+      top5CustomersList: top5Customers
+    }
   }
 }

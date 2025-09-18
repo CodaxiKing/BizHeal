@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle, Button } from '@bizheal/ui'
 import CustomerHealthSection from '@/components/CustomerHealthSection'
 import MonthlyRevenueChart from '@/components/MonthlyRevenueChart'
+import RevenueConcentrationCard from '@/components/RevenueConcentrationCard'
 
 export default function DashboardPage() {
   const { data: session, status } = useSession()
@@ -178,9 +179,14 @@ export default function DashboardPage() {
           <CustomerHealthSection />
         </div>
 
-        {/* Monthly Revenue Chart */}
-        <div className="mb-8">
-          <MonthlyRevenueChart />
+        {/* Revenue Analysis Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+          <div className="lg:col-span-2">
+            <MonthlyRevenueChart />
+          </div>
+          <div className="lg:col-span-1">
+            <RevenueConcentrationCard />
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
