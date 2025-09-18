@@ -4,6 +4,7 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle, Button } from '@bizheal/ui'
+import CustomerHealthSection from '@/components/CustomerHealthSection'
 
 export default function DashboardPage() {
   const { data: session, status } = useSession()
@@ -171,6 +172,11 @@ export default function DashboardPage() {
           ))}
         </div>
 
+        {/* Customer Health Section */}
+        <div className="mb-8">
+          <CustomerHealthSection />
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Health Scanner */}
           <Card className="lg:col-span-1">
@@ -252,8 +258,15 @@ export default function DashboardPage() {
               <CardTitle>Ações Rápidas</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <Button className="h-20 flex flex-col items-center justify-center">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <Button 
+                  onClick={() => router.push('/dashboard/import')}
+                  className="h-20 flex flex-col items-center justify-center"
+                >
+                  <span className="text-2xl mb-1">📤</span>
+                  <span>Importar Dados</span>
+                </Button>
+                <Button variant="outline" className="h-20 flex flex-col items-center justify-center">
                   <span className="text-2xl mb-1">📊</span>
                   <span>Gerar Relatório</span>
                 </Button>

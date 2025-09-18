@@ -1,0 +1,96 @@
+Prompt Parte 1: Implementando a Importação de Dados via CSV (MVP)
+Objetivo: Permitir que o usuário suba um arquivo CSV com seus dados de vendas para que o BizHeal tenha o que analisar.
+
+[INSTRUÇÃO GERAL]
+Aja como um Desenvolvedor Full-Stack Sênior. Sua tarefa é implementar uma funcionalidade de importação de dados via CSV no SaaS BizHeal. Você deve criar a interface no frontend para o upload e o endpoint no backend para processar e salvar os dados.
+
+[CONTEXTO]
+Estamos trabalhando no monorepo do BizHeal. As alterações no frontend serão em `apps/app` (Next.js) e no backend em sua API NestJS. O banco de dados usa Prisma.
+
+[REQUISITOS]
+
+**1. Alterações no Banco de Dados (`packages/db/schema.prisma`):**
+- Crie um novo modelo para armazenar transações individuais. Isso é mais granular e útil que o modelo `KpiData`. Adicione o seguinte modelo:
+
+  ```prisma
+  model Transaction {
+    id          String   @id @default(cuid())
+    date        DateTime
+    amount      Float
+    customerId  String
+    description String?
+    businessId  String
+    business    BusinessProfile @relation(fields: [businessId], references: [id])
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+  }
+
+No modelo BusinessProfile, adicione a relação inversa: transactions Transaction[].
+
+Após adicionar, lembre o usuário de rodar pnpm prisma generate e pnpm prisma migrate dev.
+
+2. Frontend (apps/app):
+
+Crie uma nova página em /dashboard/import.
+
+Nesta página, use os componentes do Shadcn/UI (Card, Input, Button) para criar uma interface de upload de arquivo.
+
+Adicione a biblioteca papaparse para fazer o parsing do CSV no navegador (é mais eficiente).
+
+O CSV esperado terá as colunas: data_venda, valor, id_cliente.
+
+Após o usuário selecionar o arquivo, faça o parsing e envie os dados como um JSON para um novo endpoint no backend.
+
+Mostre um feedback visual para o usuário (ex: "Dados importados com sucesso!" ou "Ocorreu um erro.").
+
+3. Backend (API NestJS):
+
+Crie um novo módulo (DataModule) e um novo controller (DataController).
+
+Crie um endpoint POST /data/upload que seja protegido e só acessível por usuários autenticados.
+
+O endpoint deve receber um array de objetos JSON (transações).
+
+Crie um DataService que pegue esses dados e use o Prisma para salvá-los no modelo Transaction, associando-os ao businessId do usuário logado.
+
+Implemente tratamento de erros básico (ex: se os dados vierem em formato incorreto).
+
+
+
+---
+
+### Prompt Parte 2: Criando o "Scanner de Churn" (Primeira Lógica de Negócio)
+
+**Objetivo:** Usar os dados importados para criar a primeira análise inteligente: identificar clientes com risco de churn.
+
+```prompt
+[INSTRUÇÃO GERAL]
+Aja como um Desenvolvedor Full-Stack Sênior. Sua tarefa é criar a primeira funcionalidade de análise inteligente do BizHeal: um "Scanner de Risco de Churn". Você irá criar a lógica no backend e exibir os resultados no frontend.
+
+[CONTEXTO]
+Os dados de transações já estão sendo salvos no banco de dados (`Transaction`). Agora vamos analisá-los.
+
+[REQUISITOS]
+
+**1. Backend (API NestJS):**
+- Crie um novo módulo (`AnalysisModule`) e um `AnalysisService`.
+- No `AnalysisService`, crie um método chamado `calculateChurnRisk(businessId: string)`.
+- A lógica de negócio será simples por enquanto:
+    1. Busque todas as transações do `businessId`.
+    2. Agrupe as transações por `customerId`.
+    3. Para cada cliente, encontre a data da última transação.
+    4. Se a última transação foi há mais de 90 dias (a partir da data atual), o cliente é considerado "em risco".
+- Crie um `AnalysisController` com um endpoint `GET /analysis/churn-risk`.
+- Este endpoint deve chamar o serviço e retornar um JSON com:
+    - `totalCustomers`: número total de clientes.
+    - `atRiskCustomersCount`: número de clientes em risco.
+    - `atRiskCustomersList`: um array com os IDs dos clientes em risco e a data da última compra.
+
+**2. Frontend (`apps/app`):**
+- Na página principal do Dashboard (`/dashboard`), crie uma nova seção chamada "Saúde dos Clientes".
+- Crie um novo componente React que faz uma chamada (fetch) para o endpoint `/analysis/churn-risk`.
+- Use os componentes `Card` do Shadcn/UI para exibir os números principais (`totalCustomers` e `atRiskCustomersCount`).
+- Use um componente `Table` do Shadcn/UI para listar os clientes em risco (`atRiskCustomersList`), mostrando o ID do cliente e há quantos dias foi a última compra.
+- Adicione um indicador visual de alerta (um ícone de "⚠️") se o número de clientes em risco for maior que 0.
+
