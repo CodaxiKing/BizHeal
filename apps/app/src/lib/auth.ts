@@ -98,4 +98,10 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
 }
 
-export const { handlers, signIn, signOut, auth } = NextAuth(authOptions)
+export default NextAuth(authOptions)
+
+// For Next.js 13+ App Router
+export const handlers = {
+  GET: NextAuth(authOptions),
+  POST: NextAuth(authOptions)
+}
