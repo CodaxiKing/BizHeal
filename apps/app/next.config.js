@@ -3,6 +3,10 @@ const nextConfig = {
   output: 'standalone',
   transpilePackages: ['@bizheal/ui', '@bizheal/db'],
   serverExternalPackages: ['@prisma/client', 'bcryptjs'],
+  allowedDevOrigins: ['*'],
+  experimental: {
+    allowedHosts: true,
+  },
 }
 
 module.exports = nextConfig

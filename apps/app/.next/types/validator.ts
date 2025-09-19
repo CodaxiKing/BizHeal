@@ -101,10 +101,28 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../src/app/insights/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/insights">> = Specific
+  const handler = {} as typeof import("../../src/app/insights/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../src/app/integrations/callback/shopify/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/integrations/callback/shopify">> = Specific
   const handler = {} as typeof import("../../src/app/integrations/callback/shopify/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../src/app/integrations/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/integrations">> = Specific
+  const handler = {} as typeof import("../../src/app/integrations/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check

@@ -53,5 +53,5 @@ externalPort = 3003
 
 [deployment]
 deploymentTarget = "autoscale"
-run = ["pnpm", "run", "start", "--filter=@bizheal/app"]
-build = ["pnpm", "run", "build", "--filter=@bizheal/app"]
+run = ["bash", "-c", "cd apps/app && pnpm start"]
+build = ["pnpm", "build"]
