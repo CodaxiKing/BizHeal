@@ -1,4 +1,6 @@
 import { Button } from '@bizheal/ui'
+import FeatureTabs from './components/FeatureTabs'
+import Footer from './components/Footer'
 
 export default function Home() {
   return (
@@ -135,111 +137,172 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-16 bg-gray-50">
+      {/* Features Section - Modern Tabs */}
+      <FeatureTabs />
+
+      {/* Statistics Section */}
+      <section className="py-20 bg-gradient-to-r from-blue-50 to-indigo-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Funcionalidades que Fazem a Diferença
+              Deixe a gente trabalhar por você!
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Todas as ferramentas que você precisa para gerir e otimizar seu negócio em uma só plataforma.
+            <p className="text-xl text-gray-600">
+              Milhares de empresas já economizam tempo e dinheiro conosco
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="text-2xl mb-3">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 1v6m0 6v6" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-green-600"/>
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Análise de Receita</h3>
-              <p className="text-gray-600 text-sm">Identifique clientes mais lucrativos e oportunidades de crescimento</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div className="bg-white rounded-2xl p-8 shadow-lg">
+              <div className="text-5xl font-bold text-blue-600 mb-2">300.000</div>
+              <p className="text-gray-600 text-lg">Pessoas cadastradas</p>
             </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="text-2xl mb-3">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="currentColor" className="text-yellow-500"/>
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Detecção de Churn</h3>
-              <p className="text-gray-600 text-sm">Previna a perda de clientes com alertas inteligentes</p>
+            <div className="bg-white rounded-2xl p-8 shadow-lg">
+              <div className="text-5xl font-bold text-blue-600 mb-2">10.000.000</div>
+              <p className="text-gray-600 text-lg">De dados processados mensalmente pelos nossos sistemas</p>
             </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="text-2xl mb-3">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-                  <path d="M14 2v6h6M16 13H8m8 4H8m8 4H8" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Relatórios Automatizados</h3>
-              <p className="text-gray-600 text-sm">Relatórios executivos gerados automaticamente</p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="text-2xl mb-3">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Integrações Nativas</h3>
-              <p className="text-gray-600 text-sm">Conecte-se facilmente com seus sistemas atuais</p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="text-2xl mb-3">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" className="text-green-600"/>
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Segurança Empresarial</h3>
-              <p className="text-gray-600 text-sm">Seus dados protegidos com criptografia de ponta</p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="text-2xl mb-3">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2" stroke="currentColor" strokeWidth="2" fill="none"/>
-                  <line x1="12" y1="18" x2="12.01" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Acesso Mobile</h3>
-              <p className="text-gray-600 text-sm">Acompanhe seus indicadores de qualquer lugar</p>
+            <div className="bg-white rounded-2xl p-8 shadow-lg">
+              <div className="text-5xl font-bold text-blue-600 mb-2">30h</div>
+              <p className="text-gray-600 text-lg">Por mês economizadas em média pelos nossos usuários</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Social Proof Section */}
-      <section className="py-16">
+      {/* Testimonials Section */}
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Empresas que Confiam no BizHeal
-            </h2>
-            <p className="text-xl text-gray-600">
-              Junte-se a centenas de empresas que já otimizaram seus resultados
+          <div className="text-center mb-16">
+            <p className="text-lg text-gray-600 mb-4">
+              Muito parceria, <span className="font-semibold text-blue-600">mais histórias pra contar!</span>
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-bold text-primary mb-2">+500</div>
-              <p className="text-gray-600">Empresas ativas</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Rapha Sales */}
+            <div className="bg-gray-50 rounded-2xl p-8 text-center">
+              <div className="w-16 h-16 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <svg className="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Rapha Sales</h3>
+              <p className="text-blue-600 mb-4">Sou YouTuber</p>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Comecei a Monetizar no digital em 2018 e meu maior resultado com afiliado foi mais de 150 mil num mês!
+              </p>
+              <div className="mt-6">
+                <span className="text-blue-600 text-sm font-medium">⭐ APROVADO</span>
+              </div>
             </div>
-            <div>
-              <div className="text-4xl font-bold text-primary mb-2">R$ 2.5M</div>
-              <p className="text-gray-600">Em economia identificada</p>
+
+            {/* Gustavo Sales */}
+            <div className="bg-gray-50 rounded-2xl p-8 text-center">
+              <div className="w-16 h-16 bg-green-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <svg className="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Gustavo Sales</h3>
+              <p className="text-blue-600 mb-4">Mentor e Streamer</p>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Transformado em pessoa e no mundo dos negócios: de técnico em contabilidade para ser um empreendedor
+              </p>
+              <div className="mt-6">
+                <span className="text-blue-600 text-sm font-medium">⭐ APROVADO</span>
+              </div>
             </div>
-            <div>
-              <div className="text-4xl font-bold text-primary mb-2">95%</div>
-              <p className="text-gray-600">Taxa de satisfação</p>
+
+            {/* Jennifer Gomes */}
+            <div className="bg-gray-50 rounded-2xl p-8 text-center">
+              <div className="w-16 h-16 bg-purple-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <svg className="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Jennifer Gomes</h3>
+              <p className="text-blue-600 mb-4">Empreendedora Associada</p>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Tenho experiências únicas, entre elas ser associada ao empreendimento da empresa e configurar como
+              </p>
+              <div className="mt-6">
+                <span className="text-blue-600 text-sm font-medium">⭐ APROVADO</span>
+              </div>
             </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Tá com dúvida? <span className="text-blue-600">A gente explica.</span>
+            </h2>
+          </div>
+          
+          <div className="space-y-4">
+            <details className="bg-white rounded-lg border border-gray-200">
+              <summary className="flex justify-between items-center p-6 cursor-pointer hover:bg-gray-50 transition-colors">
+                <span className="text-lg font-medium text-gray-900">O que é um ERP e como ele funciona?</span>
+                <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="p-6 pt-0 text-gray-600">
+                Um ERP (Enterprise Resource Planning) é um sistema que integra e automatiza os principais processos de negócio de uma empresa, como finanças, vendas, compras, estoque e recursos humanos, centralizando informações em uma única plataforma.
+              </div>
+            </details>
+
+            <details className="bg-white rounded-lg border border-gray-200">
+              <summary className="flex justify-between items-center p-6 cursor-pointer hover:bg-gray-50 transition-colors">
+                <span className="text-lg font-medium text-gray-900">Quais segmentos podem ser atendidos por um ERP?</span>
+                <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="p-6 pt-0 text-gray-600">
+                Praticamente todos os segmentos podem ser beneficiados por um ERP: comércio, indústria, serviços, agronegócio, saúde, educação, construção civil, entre outros. O sistema se adapta às necessidades específicas de cada setor.
+              </div>
+            </details>
+
+            <details className="bg-white rounded-lg border border-gray-200">
+              <summary className="flex justify-between items-center p-6 cursor-pointer hover:bg-gray-50 transition-colors">
+                <span className="text-lg font-medium text-gray-900">Quais são as principais funcionalidades de um ERP?</span>
+                <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="p-6 pt-0 text-gray-600">
+                As principais funcionalidades incluem gestão financeira, controle de estoque, emissão de notas fiscais, gestão de vendas e compras, relatórios gerenciais, controle de fluxo de caixa e integração bancária.
+              </div>
+            </details>
+
+            <details className="bg-white rounded-lg border border-gray-200">
+              <summary className="flex justify-between items-center p-6 cursor-pointer hover:bg-gray-50 transition-colors">
+                <span className="text-lg font-medium text-gray-900">Como funcionam as integrações da Conta Azul?</span>
+                <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="p-6 pt-0 text-gray-600">
+                A Conta Azul oferece integrações nativas com mais de 200 aplicações, incluindo e-commerces, marketplaces, sistemas de pagamento, bancos e ferramentas de produtividade, sincronizando dados automaticamente.
+              </div>
+            </details>
+
+            <details className="bg-white rounded-lg border border-gray-200">
+              <summary className="flex justify-between items-center p-6 cursor-pointer hover:bg-gray-50 transition-colors">
+                <span className="text-lg font-medium text-gray-900">Quais são as vantagens e benefícios de usar a Conta Azul?</span>
+                <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="p-6 pt-0 text-gray-600">
+                Os principais benefícios incluem automatização de processos, redução de erros, economia de tempo, maior controle financeiro, facilidade de uso, acesso remoto e suporte especializado.
+              </div>
+            </details>
           </div>
         </div>
       </section>
@@ -267,6 +330,9 @@ export default function Home() {
           </p>
         </div>
       </section>
+
+      {/* Footer */}
+      <Footer />
     </main>
   )
 }
