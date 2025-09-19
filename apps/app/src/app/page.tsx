@@ -53,13 +53,14 @@ export default function HomePage() {
                 </div>
                 
                 <h2 className="text-3xl lg:text-5xl font-bold text-white mb-4 leading-tight">
-                  Controle financeiro<br />
-                  <span className="text-blue-200">inteligente para</span><br />
-                  seu negócio crescer
+                  Sua empresa está<br />
+                  <span className="text-yellow-400">perdendo dinheiro?</span><br />
+                  Descubra onde.
                 </h2>
                 
                 <p className="text-lg text-blue-100 mb-8 max-w-md">
-                  Organize seu financeiro. Controle total da operação.
+                  BizHeal é a plataforma de inteligência que diagnostica ineficiências ocultas 
+                  e automatiza ações para aumentar seu lucro.
                 </p>
                 
                 <div>
@@ -210,6 +211,252 @@ export default function HomePage() {
               <div className="text-4xl sm:text-5xl font-bold text-yellow-400 mb-2">40h por mês</div>
               <div className="text-lg font-medium text-white mb-2">De economia</div>
               <div className="text-blue-100 text-sm">média para quem confia nas automações do BizHeal</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Como Funciona Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              Como Funciona
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              3 passos simples para revolucionar a gestão da sua empresa
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="text-2xl font-bold text-blue-600">1</div>
+              </div>
+              <div className="bg-blue-50 p-6 rounded-lg">
+                <svg className="w-12 h-12 text-blue-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                </svg>
+                <h3 className="text-xl font-semibold mb-3">Conecte seus dados</h3>
+                <p className="text-gray-600">
+                  Integre suas ferramentas (Shopify, Bling, Conta Azul, planilhas) em minutos. 
+                  Nossa IA coleta e organiza tudo automaticamente.
+                </p>
+              </div>
+            </div>
+            
+            <div className="text-center">
+              <div className="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="text-2xl font-bold text-green-600">2</div>
+              </div>
+              <div className="bg-green-50 p-6 rounded-lg">
+                <svg className="w-12 h-12 text-green-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <h3 className="text-xl font-semibold mb-3">Receba diagnósticos automáticos</h3>
+                <p className="text-gray-600">
+                  Em 24h nossa IA identifica onde você está perdendo dinheiro: 
+                  clientes em risco, desperdícios ocultos, oportunidades não exploradas.
+                </p>
+              </div>
+            </div>
+            
+            <div className="text-center">
+              <div className="bg-purple-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="text-2xl font-bold text-purple-600">3</div>
+              </div>
+              <div className="bg-purple-50 p-6 rounded-lg">
+                <svg className="w-12 h-12 text-purple-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                <h3 className="text-xl font-semibold mb-3">Aja com recomendações inteligentes</h3>
+                <p className="text-gray-600">
+                  Receba planos de ação específicos e priorizados. 
+                  Implemente melhorias que geram resultados reais em semanas.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Para Quem é Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              Para Quem é o BizHeal?
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Empresários que querem tomar decisões baseadas em dados, não em suposições
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-white p-8 rounded-2xl shadow-lg">
+              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-semibold text-center mb-4">Donos de E-commerce</h3>
+              <p className="text-gray-600 text-center mb-6">
+                Identifique produtos que não vendem, clientes em risco de churn, 
+                e otimize campanhas de marketing para maximizar o ROI.
+              </p>
+              <ul className="space-y-2 text-sm">
+                <li className="flex items-center">
+                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
+                  Análise de performance de produtos
+                </li>
+                <li className="flex items-center">
+                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
+                  Otimização de campanhas de ads
+                </li>
+                <li className="flex items-center">
+                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
+                  Prevenção de churn de clientes
+                </li>
+              </ul>
+            </div>
+            
+            <div className="bg-white p-8 rounded-2xl shadow-lg">
+              <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-semibold text-center mb-4">Agências de Marketing</h3>
+              <p className="text-gray-600 text-center mb-6">
+                Entregue relatórios mais inteligentes para clientes e prove o valor real 
+                das suas campanhas com métricas que importam.
+              </p>
+              <ul className="space-y-2 text-sm">
+                <li className="flex items-center">
+                  <span className="w-1.5 h-1.5 bg-green-500 rounded-full mr-2"></span>
+                  Dashboards white-label para clientes
+                </li>
+                <li className="flex items-center">
+                  <span className="w-1.5 h-1.5 bg-green-500 rounded-full mr-2"></span>
+                  ROI real das campanhas
+                </li>
+                <li className="flex items-center">
+                  <span className="w-1.5 h-1.5 bg-green-500 rounded-full mr-2"></span>
+                  Relatórios automatizados
+                </li>
+              </ul>
+            </div>
+            
+            <div className="bg-white p-8 rounded-2xl shadow-lg md:col-span-2 lg:col-span-1">
+              <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-semibold text-center mb-4">PMEs em Crescimento</h3>
+              <p className="text-gray-600 text-center mb-6">
+                Empresas que precisam profissionalizar a gestão e tomar decisões 
+                estratégicas baseadas em dados confiáveis.
+              </p>
+              <ul className="space-y-2 text-sm">
+                <li className="flex items-center">
+                  <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mr-2"></span>
+                  Controle financeiro automatizado
+                </li>
+                <li className="flex items-center">
+                  <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mr-2"></span>
+                  Indicadores de performance
+                </li>
+                <li className="flex items-center">
+                  <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mr-2"></span>
+                  Planejamento estratégico
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Prova Social Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              O que nossos clientes dizem
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Empresários que já transformaram seus negócios com o BizHeal
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white p-8 rounded-2xl shadow-lg border">
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                  <span className="text-blue-600 font-bold text-lg">RC</span>
+                </div>
+                <div className="ml-4">
+                  <h4 className="font-semibold text-gray-900">Ricardo Costa</h4>
+                  <p className="text-sm text-gray-600">CEO, Loja Digital Plus</p>
+                </div>
+              </div>
+              <div className="flex mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+              <p className="text-gray-700 italic">
+                "Em 3 meses, identifiquei R$ 45 mil em desperdícios que não sabia que tinha. 
+                O BizHeal pagou por si só no primeiro mês."
+              </p>
+            </div>
+            
+            <div className="bg-white p-8 rounded-2xl shadow-lg border">
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                  <span className="text-green-600 font-bold text-lg">MS</span>
+                </div>
+                <div className="ml-4">
+                  <h4 className="font-semibold text-gray-900">Marina Silva</h4>
+                  <p className="text-sm text-gray-600">Diretora, Agência Crescer</p>
+                </div>
+              </div>
+              <div className="flex mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+              <p className="text-gray-700 italic">
+                "Meus clientes ficaram impressionados com os relatórios automáticos. 
+                Consegui aumentar o valor dos contratos em 40%."
+              </p>
+            </div>
+            
+            <div className="bg-white p-8 rounded-2xl shadow-lg border">
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+                  <span className="text-purple-600 font-bold text-lg">JO</span>
+                </div>
+                <div className="ml-4">
+                  <h4 className="font-semibold text-gray-900">João Oliveira</h4>
+                  <p className="text-sm text-gray-600">Fundador, Tech Solutions</p>
+                </div>
+              </div>
+              <div className="flex mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+              <p className="text-gray-700 italic">
+                "Finalmente tenho uma visão clara do meu negócio. As integrações funcionaram 
+                perfeitamente e economizo 10 horas por semana em relatórios."
+              </p>
             </div>
           </div>
         </div>

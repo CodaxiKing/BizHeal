@@ -4,7 +4,7 @@ const nextConfig = {
   transpilePackages: ['@bizheal/ui'],
   serverExternalPackages: [],
   experimental: {
-    allowedDevOrigins: ['https://0255687d-6c41-469f-a2ce-da31a249300e-00-1z5hwb35elp0t.kirk.replit.dev', '*'],
+    allowedDevOrigins: ['c7c09938-92eb-410a-acfa-9bd7560ee057-00-114dfhvm73ebd.spock.replit.dev', '127.0.0.1', 'localhost', '*'],
   },
 }
 
