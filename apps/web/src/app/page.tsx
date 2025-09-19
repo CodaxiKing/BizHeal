@@ -20,7 +20,7 @@ export default function Home() {
               </p>
               <Button 
                 size="lg" 
-                className="bg-yellow-500 hover:bg-yellow-600 text-blue-900 font-semibold text-lg px-8 py-4"
+                className="bg-white hover:bg-gray-100 text-blue-700 font-semibold text-lg px-8 py-4 shadow-lg"
                 asChild
               >
                 <a href="https://app.bizheal.com/register" target="_blank" rel="noopener noreferrer">

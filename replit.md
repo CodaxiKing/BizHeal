@@ -49,7 +49,7 @@ The application is configured to run on:
 - Fresh GitHub project import and complete setup completed successfully
 - Installed all dependencies using pnpm workspace (746 packages)
 - Created and configured PostgreSQL database with Prisma schema migration
-- Updated next.config.js with current Replit domain (0255687d-6c41-469f-a2ce-da31a249300e-00-1z5hwb35elp0t.kirk.replit.dev)
+- Updated next.config.js with current Replit domain (30382c60-0304-4529-953e-000becf2f7cb-00-1kyts45a68e7a.spock.replit.dev)
 - Configured Next.js with allowedHosts for proper proxy support in Replit environment  
 - Set up workflow to run main SaaS application on port 5000 with correct host binding (0.0.0.0)
 - Configured deployment with autoscale target for production readiness

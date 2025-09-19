@@ -2,9 +2,308 @@
 
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from '@bizheal/ui'
 import Navbar from '@/components/Navbar'
+
+// Interactive How It Works Component
+function InteractiveHowItWorks({ router }: { router: any }) {
+  const [activeStep, setActiveStep] = useState(1)
+  
+  const steps = [
+    {
+      id: 1,
+      title: "Conecte seus dados",
+      description: "Integre suas ferramentas (Shopify, Bling, Conta Azul, planilhas) em minutos. Nossa IA coleta e organiza tudo automaticamente.",
+      detailedDescription: "Conecte mais de 50+ plataformas populares com apenas alguns cliques. Suportamos Shopify, WooCommerce, Bling, Conta Azul, planilhas Excel/Google Sheets e muito mais.",
+      color: "blue",
+      icon: (
+        <svg className="w-12 h-12 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+        </svg>
+      )
+    },
+    {
+      id: 2,
+      title: "Receba diagnósticos automáticos",
+      description: "Em 24h nossa IA identifica onde você está perdendo dinheiro: clientes em risco, desperdícios ocultos, oportunidades não exploradas.",
+      detailedDescription: "Nossa inteligência artificial analisa padrões nos seus dados e identifica automaticamente gargalos financeiros, clientes com risco de churn e oportunidades de crescimento que você talvez não tenha notado.",
+      color: "green",
+      icon: (
+        <svg className="w-12 h-12 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      )
+    },
+    {
+      id: 3,
+      title: "Aja com recomendações inteligentes",
+      description: "Receba planos de ação específicos e priorizados. Implemente melhorias que geram resultados reais em semanas.",
+      detailedDescription: "Receba recomendações personalizadas e priorizadas baseadas no seu perfil de negócio. Cada sugestão vem com passos claros de implementação e estimativas de impacto financeiro.",
+      color: "purple",
+      icon: (
+        <svg className="w-12 h-12 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      )
+    }
+  ]
+
+  const colorClasses = {
+    blue: { bg: 'bg-blue-100', text: 'text-blue-600', bgLight: 'bg-blue-50', border: 'border-blue-200' },
+    green: { bg: 'bg-green-100', text: 'text-green-600', bgLight: 'bg-green-50', border: 'border-green-200' },
+    purple: { bg: 'bg-purple-100', text: 'text-purple-600', bgLight: 'bg-purple-50', border: 'border-purple-200' }
+  }
+
+  const activeStepData = steps.find(step => step.id === activeStep)!
+
+  return (
+    <section className="py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+            Como Funciona
+          </h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            3 passos simples para revolucionar a gestão da sua empresa
+          </p>
+        </div>
+        
+        {/* Step Navigation */}
+        <div className="flex justify-center mb-12">
+          <div className="flex space-x-4">
+            {steps.map((step) => (
+              <button
+                key={step.id}
+                onClick={() => setActiveStep(step.id)}
+                className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-300 ${
+                  activeStep === step.id
+                    ? `${colorClasses[step.color as keyof typeof colorClasses].bg} ${colorClasses[step.color as keyof typeof colorClasses].text} scale-110 shadow-lg`
+                    : 'bg-gray-200 text-gray-500 hover:bg-gray-300'
+                }`}
+              >
+                {step.id}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Active Step Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left Side - Visual */}
+          <div className="text-center">
+            <div className={`${colorClasses[activeStepData.color as keyof typeof colorClasses].bgLight} p-8 rounded-2xl transition-all duration-500 transform hover:scale-105`}>
+              <div className={`w-24 h-24 ${colorClasses[activeStepData.color as keyof typeof colorClasses].bg} rounded-full flex items-center justify-center mx-auto mb-6`}>
+                <div className={colorClasses[activeStepData.color as keyof typeof colorClasses].text}>
+                  {activeStepData.icon}
+                </div>
+              </div>
+              <div className={`text-6xl font-bold ${colorClasses[activeStepData.color as keyof typeof colorClasses].text} mb-4`}>
+                {activeStepData.id}
+              </div>
+            </div>
+          </div>
+
+          {/* Right Side - Content */}
+          <div>
+            <h3 className="text-3xl font-bold text-gray-900 mb-6">
+              {activeStepData.title}
+            </h3>
+            <p className="text-lg text-gray-600 mb-6">
+              {activeStepData.detailedDescription}
+            </p>
+            
+            {/* Step Indicators */}
+            <div className="flex space-x-2 mb-6">
+              {steps.map((step) => (
+                <div
+                  key={step.id}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    step.id <= activeStep ? colorClasses[activeStepData.color as keyof typeof colorClasses].bg : 'bg-gray-200'
+                  } ${step.id === activeStep ? 'w-8' : 'w-4'}`}
+                />
+              ))}
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button 
+                className={`${colorClasses[activeStepData.color as keyof typeof colorClasses].bg} ${colorClasses[activeStepData.color as keyof typeof colorClasses].text} hover:opacity-80 border-2 ${colorClasses[activeStepData.color as keyof typeof colorClasses].border}`}
+                onClick={() => router.push('/integrations')}
+              >
+                {activeStep === 1 ? 'Ver Integrações' : activeStep === 2 ? 'Ver Análises' : 'Ver Recomendações'}
+              </Button>
+              {activeStep < 3 && (
+                <Button 
+                  variant="outline"
+                  onClick={() => setActiveStep(activeStep + 1)}
+                  className="border-gray-300 hover:bg-gray-50"
+                >
+                  Próximo Passo →
+                </Button>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Interactive Target Audience Component  
+function InteractiveTargetAudience({ router }: { router: any }) {
+  const [selectedAudience, setSelectedAudience] = useState<number | null>(null)
+  
+  const audiences = [
+    {
+      id: 1,
+      title: "Donos de E-commerce",
+      description: "Identifique produtos que não vendem, clientes em risco de churn, e otimize campanhas de marketing para maximizar o ROI.",
+      detailedDescription: "Especialistas em vendas online que precisam de visibilidade total sobre performance de produtos, comportamento de clientes e eficácia das campanhas de marketing.",
+      benefits: [
+        "Análise de performance de produtos em tempo real",
+        "Detecção precoce de churn de clientes",
+        "Otimização automática de campanhas de ads",
+        "Relatórios de ROI detalhados por canal"
+      ],
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+        </svg>
+      ),
+      color: "blue",
+      cta: "Ver Demo para E-commerce"
+    },
+    {
+      id: 2,
+      title: "Agências de Marketing",
+      description: "Entregue relatórios mais inteligentes para clientes e prove o valor real das suas campanhas com métricas que importam.",
+      detailedDescription: "Agências que precisam demonstrar resultados concretos para seus clientes e otimizar campanhas baseadas em dados reais de negócio.",
+      benefits: [
+        "Dashboards white-label personalizados",
+        "Relatórios automáticos para clientes", 
+        "Métricas de ROI real, não apenas cliques",
+        "Integração com todas as principais plataformas"
+      ],
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+        </svg>
+      ),
+      color: "green", 
+      cta: "Ver Demo para Agências"
+    },
+    {
+      id: 3,
+      title: "PMEs em Crescimento",
+      description: "Empresas que precisam profissionalizar a gestão e tomar decisões estratégicas baseadas em dados confiáveis.",
+      detailedDescription: "Pequenas e médias empresas em fase de crescimento que precisam de ferramentas profissionais de gestão financeira e análise de dados.",
+      benefits: [
+        "Controle financeiro automatizado completo",
+        "Indicadores de performance personalizados",
+        "Planejamento estratégico baseado em dados",
+        "Suporte especializado para implementação"
+      ],
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+        </svg>
+      ),
+      color: "purple",
+      cta: "Ver Demo para PMEs"
+    }
+  ]
+
+  const colorClasses = {
+    blue: { bg: 'bg-blue-100', text: 'text-blue-600', bgLight: 'bg-blue-50', button: 'bg-blue-600 hover:bg-blue-700' },
+    green: { bg: 'bg-green-100', text: 'text-green-600', bgLight: 'bg-green-50', button: 'bg-green-600 hover:bg-green-700' },
+    purple: { bg: 'bg-purple-100', text: 'text-purple-600', bgLight: 'bg-purple-50', button: 'bg-purple-600 hover:bg-purple-700' }
+  }
+
+  return (
+    <section className="py-20 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+            Para Quem é o BizHeal?
+          </h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Empresários que querem tomar decisões baseadas em dados, não em suposições
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {audiences.map((audience) => (
+            <div 
+              key={audience.id}
+              className={`bg-white rounded-2xl shadow-lg transition-all duration-300 cursor-pointer ${
+                selectedAudience === audience.id 
+                  ? 'transform scale-105 shadow-2xl border-2 border-blue-200' 
+                  : 'hover:transform hover:scale-102 hover:shadow-xl'
+              }`}
+              onClick={() => setSelectedAudience(selectedAudience === audience.id ? null : audience.id)}
+            >
+              {/* Card Header */}
+              <div className="p-8">
+                <div className={`${colorClasses[audience.color as keyof typeof colorClasses].bg} w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6`}>
+                  <div className={colorClasses[audience.color as keyof typeof colorClasses].text}>
+                    {audience.icon}
+                  </div>
+                </div>
+                <h3 className="text-2xl font-semibold text-center mb-4">{audience.title}</h3>
+                <p className="text-gray-600 text-center mb-6">
+                  {selectedAudience === audience.id ? audience.detailedDescription : audience.description}
+                </p>
+                
+                {/* Benefits List - Only show when expanded */}
+                {selectedAudience === audience.id && (
+                  <div className="space-y-3 mb-6">
+                    {audience.benefits.map((benefit, index) => (
+                      <div key={index} className="flex items-start space-x-3">
+                        <div className={`w-2 h-2 ${colorClasses[audience.color as keyof typeof colorClasses].bg} rounded-full mt-2 flex-shrink-0`}></div>
+                        <span className="text-sm text-gray-700 leading-relaxed">{benefit}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* CTA Button - Only show when expanded */}
+                {selectedAudience === audience.id && (
+                  <div className="text-center">
+                    <Button 
+                      className={`w-full ${colorClasses[audience.color as keyof typeof colorClasses].button} text-white`}
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        router.push('/register')
+                      }}
+                    >
+                      {audience.cta}
+                    </Button>
+                  </div>
+                )}
+              </div>
+
+              {/* Expand/Collapse Indicator */}
+              <div className="px-8 pb-6 text-center">
+                <button className="text-gray-400 hover:text-gray-600 transition-colors">
+                  {selectedAudience === audience.id ? (
+                    <svg className="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                    </svg>
+                  ) : (
+                    <svg className="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  )}
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
 
 export default function HomePage() {
   const { data: session, status } = useSession()
@@ -54,7 +353,7 @@ export default function HomePage() {
                 
                 <h2 className="text-3xl lg:text-5xl font-bold text-white mb-4 leading-tight">
                   Sua empresa está<br />
-                  <span className="text-yellow-400">perdendo dinheiro?</span><br />
+                  <span className="text-cyan-300">perdendo dinheiro?</span><br />
                   Descubra onde.
                 </h2>
                 
@@ -66,7 +365,7 @@ export default function HomePage() {
                 <div>
                   <Button 
                     size="lg" 
-                    className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 text-lg px-8 py-4 font-semibold rounded-full"
+                    className="bg-white hover:bg-gray-100 text-blue-700 text-lg px-8 py-4 font-semibold rounded-full shadow-lg"
                     onClick={() => router.push('/register')}
                   >
                     Teste Grátis
@@ -122,7 +421,7 @@ export default function HomePage() {
             <div className="absolute inset-0 opacity-10">
               <div className="absolute top-20 left-20 w-32 h-32 bg-white rounded-full"></div>
               <div className="absolute bottom-20 right-20 w-24 h-24 bg-blue-300 rounded-full"></div>
-              <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-yellow-300 rounded-full"></div>
+              <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-cyan-300 rounded-full"></div>
             </div>
           </div>
         </div>
@@ -140,7 +439,7 @@ export default function HomePage() {
             </div>
             
             <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-              Deixe a gente <span className="text-yellow-400">trabalhar por você!</span>
+              Deixe a gente <span className="text-cyan-300">trabalhar por você!</span>
             </h2>
             <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
               Não precisa se preocupar com responsabilidades. Nossa plataforma cuida de tudo 
@@ -149,7 +448,7 @@ export default function HomePage() {
             
             <Button 
               size="lg" 
-              className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 text-lg px-8 py-4 font-semibold rounded-full mb-16"
+              className="bg-white hover:bg-gray-100 text-blue-700 text-lg px-8 py-4 font-semibold rounded-full mb-16 shadow-lg"
               onClick={() => router.push('/register')}
             >
               Teste Grátis
@@ -196,19 +495,19 @@ export default function HomePage() {
           {/* Statistics */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="text-4xl sm:text-5xl font-bold text-yellow-400 mb-2">+ de 25.000</div>
+              <div className="text-4xl sm:text-5xl font-bold text-cyan-300 mb-2">+ de 25.000</div>
               <div className="text-lg font-medium text-white mb-2">Empresas</div>
               <div className="text-blue-100 text-sm">confiam na gestão financeira com o BizHeal</div>
             </div>
             
             <div className="text-center">
-              <div className="text-4xl sm:text-5xl font-bold text-yellow-400 mb-2">+ de 5.000.000</div>
+              <div className="text-4xl sm:text-5xl font-bold text-cyan-300 mb-2">+ de 5.000.000</div>
               <div className="text-lg font-medium text-white mb-2">Transações</div>
               <div className="text-blue-100 text-sm">processadas em nossa plataforma todos os meses</div>
             </div>
             
             <div className="text-center">
-              <div className="text-4xl sm:text-5xl font-bold text-yellow-400 mb-2">40h por mês</div>
+              <div className="text-4xl sm:text-5xl font-bold text-cyan-300 mb-2">40h por mês</div>
               <div className="text-lg font-medium text-white mb-2">De economia</div>
               <div className="text-blue-100 text-sm">média para quem confia nas automações do BizHeal</div>
             </div>
@@ -216,166 +515,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Como Funciona Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Como Funciona
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              3 passos simples para revolucionar a gestão da sua empresa
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <div className="text-2xl font-bold text-blue-600">1</div>
-              </div>
-              <div className="bg-blue-50 p-6 rounded-lg">
-                <svg className="w-12 h-12 text-blue-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-                </svg>
-                <h3 className="text-xl font-semibold mb-3">Conecte seus dados</h3>
-                <p className="text-gray-600">
-                  Integre suas ferramentas (Shopify, Bling, Conta Azul, planilhas) em minutos. 
-                  Nossa IA coleta e organiza tudo automaticamente.
-                </p>
-              </div>
-            </div>
-            
-            <div className="text-center">
-              <div className="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <div className="text-2xl font-bold text-green-600">2</div>
-              </div>
-              <div className="bg-green-50 p-6 rounded-lg">
-                <svg className="w-12 h-12 text-green-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <h3 className="text-xl font-semibold mb-3">Receba diagnósticos automáticos</h3>
-                <p className="text-gray-600">
-                  Em 24h nossa IA identifica onde você está perdendo dinheiro: 
-                  clientes em risco, desperdícios ocultos, oportunidades não exploradas.
-                </p>
-              </div>
-            </div>
-            
-            <div className="text-center">
-              <div className="bg-purple-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <div className="text-2xl font-bold text-purple-600">3</div>
-              </div>
-              <div className="bg-purple-50 p-6 rounded-lg">
-                <svg className="w-12 h-12 text-purple-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-                <h3 className="text-xl font-semibold mb-3">Aja com recomendações inteligentes</h3>
-                <p className="text-gray-600">
-                  Receba planos de ação específicos e priorizados. 
-                  Implemente melhorias que geram resultados reais em semanas.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Como Funciona Section - Interactive */}
+      <InteractiveHowItWorks router={router} />
 
-      {/* Para Quem é Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Para Quem é o BizHeal?
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Empresários que querem tomar decisões baseadas em dados, não em suposições
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-2xl shadow-lg">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-semibold text-center mb-4">Donos de E-commerce</h3>
-              <p className="text-gray-600 text-center mb-6">
-                Identifique produtos que não vendem, clientes em risco de churn, 
-                e otimize campanhas de marketing para maximizar o ROI.
-              </p>
-              <ul className="space-y-2 text-sm">
-                <li className="flex items-center">
-                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
-                  Análise de performance de produtos
-                </li>
-                <li className="flex items-center">
-                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
-                  Otimização de campanhas de ads
-                </li>
-                <li className="flex items-center">
-                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
-                  Prevenção de churn de clientes
-                </li>
-              </ul>
-            </div>
-            
-            <div className="bg-white p-8 rounded-2xl shadow-lg">
-              <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-semibold text-center mb-4">Agências de Marketing</h3>
-              <p className="text-gray-600 text-center mb-6">
-                Entregue relatórios mais inteligentes para clientes e prove o valor real 
-                das suas campanhas com métricas que importam.
-              </p>
-              <ul className="space-y-2 text-sm">
-                <li className="flex items-center">
-                  <span className="w-1.5 h-1.5 bg-green-500 rounded-full mr-2"></span>
-                  Dashboards white-label para clientes
-                </li>
-                <li className="flex items-center">
-                  <span className="w-1.5 h-1.5 bg-green-500 rounded-full mr-2"></span>
-                  ROI real das campanhas
-                </li>
-                <li className="flex items-center">
-                  <span className="w-1.5 h-1.5 bg-green-500 rounded-full mr-2"></span>
-                  Relatórios automatizados
-                </li>
-              </ul>
-            </div>
-            
-            <div className="bg-white p-8 rounded-2xl shadow-lg md:col-span-2 lg:col-span-1">
-              <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-semibold text-center mb-4">PMEs em Crescimento</h3>
-              <p className="text-gray-600 text-center mb-6">
-                Empresas que precisam profissionalizar a gestão e tomar decisões 
-                estratégicas baseadas em dados confiáveis.
-              </p>
-              <ul className="space-y-2 text-sm">
-                <li className="flex items-center">
-                  <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mr-2"></span>
-                  Controle financeiro automatizado
-                </li>
-                <li className="flex items-center">
-                  <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mr-2"></span>
-                  Indicadores de performance
-                </li>
-                <li className="flex items-center">
-                  <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mr-2"></span>
-                  Planejamento estratégico
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Para Quem é Section - Interactive */}
+      <InteractiveTargetAudience router={router} />
 
       {/* Prova Social Section */}
       <section className="py-20 bg-white">
