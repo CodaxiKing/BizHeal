@@ -106,8 +106,8 @@ export default function LoginPage() {
             </div>
 
             <div className="mb-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">
-                Entrar na conta
+              <h2 data-testid="login-title" className="text-3xl font-bold text-gray-900 mb-2">
+                Bem-vindo de volta
               </h2>
               <p className="text-gray-600">
                 Não tem uma conta?{' '}
@@ -124,6 +124,7 @@ export default function LoginPage() {
                 </label>
                 <input
                   id="email"
+                  data-testid="login-email-input"
                   name="email"
                   type="email"
                   autoComplete="email"
@@ -141,6 +142,7 @@ export default function LoginPage() {
                 </label>
                 <input
                   id="password"
+                  data-testid="login-password-input"
                   name="password"
                   type="password"
                   autoComplete="current-password"
@@ -162,7 +164,7 @@ export default function LoginPage() {
               </div>
 
               {error && (
-                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+                <div data-testid="login-error-message" className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
                   {error}
                 </div>
               )}
@@ -170,6 +172,7 @@ export default function LoginPage() {
               <div className="space-y-4">
                 <Button
                   type="submit"
+                  data-testid="login-submit-button"
                   disabled={loading}
                   className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >

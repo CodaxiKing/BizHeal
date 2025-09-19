@@ -3,7 +3,7 @@ const nextConfig = {
   output: 'standalone',
   transpilePackages: ['@bizheal/ui', '@bizheal/db'],
   serverExternalPackages: ['@prisma/client', 'bcryptjs'],
-  allowedDevOrigins: ['30382c60-0304-4529-953e-000becf2f7cb-00-1kyts45a68e7a.spock.replit.dev', '127.0.0.1', 'localhost', '*'],
+  allowedDevOrigins: ['0a009443-385b-4233-8b30-7c463180947f-00-2y7ww6v9b3rth.riker.replit.dev', '127.0.0.1', 'localhost', '*'],
   experimental: {
     allowedHosts: true,
   },

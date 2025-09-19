@@ -125,7 +125,7 @@ export default function DashboardPage() {
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              <span className="text-sm text-gray-500">
+              <span data-testid="user-greeting" className="text-sm text-gray-500">
                 Olá, {session.user?.name || session.user?.email}
               </span>
               <Button variant="ghost" size="sm" onClick={() => router.push('/dashboard/import')}>
@@ -147,6 +147,7 @@ export default function DashboardPage() {
                 Configurações
               </Button>
               <Button 
+                data-testid="logout-button"
                 variant="outline" 
                 size="sm" 
                 onClick={() => signOut({ callbackUrl: '/login' })}
@@ -178,7 +179,7 @@ export default function DashboardPage() {
           {kpis.map((kpi, index) => (
             <Card key={index}>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium text-gray-600">
+                <CardTitle data-testid={`kpi-${kpi.title.toLowerCase()}`} className="text-sm font-medium text-gray-600">
                   {kpi.title}
                 </CardTitle>
                 <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">

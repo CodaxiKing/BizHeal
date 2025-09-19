@@ -162,7 +162,7 @@ export default function RegisterPage() {
             </div>
 
             <div className="mb-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">
+              <h2 data-testid="register-title" className="text-3xl font-bold text-gray-900 mb-2">
                 Criar conta gratuita
               </h2>
               <p className="text-gray-600">
@@ -181,6 +181,7 @@ export default function RegisterPage() {
                   </label>
                   <input
                     id="name"
+                    data-testid="register-name-input"
                     name="name"
                     type="text"
                     autoComplete="name"
@@ -198,6 +199,7 @@ export default function RegisterPage() {
                   </label>
                   <input
                     id="email"
+                    data-testid="register-email-input"
                     name="email"
                     type="email"
                     autoComplete="email"
@@ -215,6 +217,7 @@ export default function RegisterPage() {
                   </label>
                   <input
                     id="password"
+                    data-testid="register-password-input"
                     name="password"
                     type="password"
                     autoComplete="new-password"
@@ -232,6 +235,7 @@ export default function RegisterPage() {
                   </label>
                   <input
                     id="confirmPassword"
+                    data-testid="register-confirm-password-input"
                     name="confirmPassword"
                     type="password"
                     autoComplete="new-password"
@@ -245,7 +249,7 @@ export default function RegisterPage() {
               </div>
 
               {error && (
-                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+                <div data-testid="register-error-message" className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
                   {error}
                 </div>
               )}
@@ -253,6 +257,7 @@ export default function RegisterPage() {
               <div className="space-y-4">
                 <Button
                   type="submit"
+                  data-testid="register-submit-button"
                   disabled={loading}
                   className="w-full bg-green-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
