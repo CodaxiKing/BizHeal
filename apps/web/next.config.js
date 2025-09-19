@@ -3,9 +3,8 @@ const nextConfig = {
   output: 'standalone',
   transpilePackages: ['@bizheal/ui'],
   serverExternalPackages: [],
-  allowedDevOrigins: ['https://acf3b17f-f391-48fd-a64c-a59fc75fbf68-00-2q2yk7rd1i41e.kirk.replit.dev', '*'],
   experimental: {
-    allowedHosts: true,
+    allowedDevOrigins: ['https://0255687d-6c41-469f-a2ce-da31a249300e-00-1z5hwb35elp0t.kirk.replit.dev', '*'],
   },
 }
 

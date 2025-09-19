@@ -18,6 +18,10 @@ author = "agent"
 task = "workflow.run"
 args = "BizHeal App"
 
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "BizHeal Marketing"
+
 [[workflows.workflow]]
 name = "BizHeal App"
 author = "agent"
@@ -30,15 +34,27 @@ waitForPort = 5000
 [workflows.workflow.metadata]
 outputType = "webview"
 
+[[workflows.workflow]]
+name = "BizHeal Marketing"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd apps/web && pnpm dev"
+waitForPort = 3000
+
+[workflows.workflow.metadata]
+outputType = "console"
+
 [[ports]]
 localPort = 5000
 externalPort = 80
 
 [[ports]]
-localPort = 41843
+localPort = 3000
 externalPort = 3000
 
 [deployment]
 deploymentTarget = "autoscale"
-run = ["bash", "-c", "cd apps/app && pnpm start"]
-build = ["bash", "-c", "cd apps/app && pnpm build"]
+run = ["pnpm", "--filter", "@bizheal/app", "start"]
+build = ["pnpm", "install"]

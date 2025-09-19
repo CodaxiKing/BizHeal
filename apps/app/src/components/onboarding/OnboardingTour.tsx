@@ -44,7 +44,7 @@ export default function OnboardingTour({ onComplete }: OnboardingTourProps) {
           <p>Depois de conectar seus dados, os diagnósticos sobre a saúde do seu negócio aparecerão aqui automaticamente.</p>
         </div>
       ),
-      placement: 'top',
+      placement: 'bottom-start',
     },
     {
       target: '#settings-button',

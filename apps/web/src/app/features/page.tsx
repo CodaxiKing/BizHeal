@@ -16,38 +16,65 @@ export default function Features() {
         </div>
 
         {/* Main Features */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+          <Card className="relative overflow-hidden">
+            <CardHeader className="pb-6">
+              <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4.93 4.93l1.41 1.41m0 0L12 12.01l5.66-5.66m0 0l1.41-1.41M16 12.01L12.01 16m0 0L6.34 21.66m0 0l-1.41-1.41" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="text-red-600"/>
+                  <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2" fill="none"/>
+                </svg>
+              </div>
+              <CardTitle className="text-2xl">Scanner de Saúde do Negócio</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600 mb-6">
+                Não apenas veja gráficos. Encontre exatamente onde seus processos estão falhando 
+                e quanto isso está custando ao seu negócio.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-start">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 mt-0.5">✓</span>
+                  <span className="text-gray-700">Identifique clientes em risco de churn</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 mt-0.5">✓</span>
+                  <span className="text-gray-700">Monitore a concentração de receita</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 mt-0.5">✓</span>
+                  <span className="text-gray-700">Encontre custos desnecessários</span>
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
+
           <Card className="relative overflow-hidden">
             <CardHeader className="pb-6">
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="2" fill="none"/>
-                  <path d="21 21l-4.35-4.35" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="text-blue-600"/>
+                  <path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-600"/>
                 </svg>
               </div>
-              <CardTitle className="text-2xl">Scanner de Gargalos</CardTitle>
+              <CardTitle className="text-2xl">Integrações Inteligentes</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-600 mb-4">
-                Nossa IA examina todos os processos da sua empresa, identificando gargalos 
-                ocultos que estão limitando seu crescimento.
+              <p className="text-gray-600 mb-6">
+                Conecte todos seus sistemas em minutos. Nossa IA unifica dados de diferentes fontes 
+                para criar uma visão 360° do seu negócio.
               </p>
-              <ul className="space-y-2 text-sm text-gray-600">
-                <li className="flex items-center">
-                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
-                  Análise de fluxo de trabalho
+              <ul className="space-y-3">
+                <li className="flex items-start">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 mt-0.5">✓</span>
+                  <span className="text-gray-700">Conecte Shopify, Bling, Conta Azul automaticamente</span>
                 </li>
-                <li className="flex items-center">
-                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
-                  Detecção de ineficiências
+                <li className="flex items-start">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 mt-0.5">✓</span>
+                  <span className="text-gray-700">Importe planilhas e dados históricos</span>
                 </li>
-                <li className="flex items-center">
-                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
-                  Mapeamento de dependências
-                </li>
-                <li className="flex items-center">
-                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>
-                  Relatórios visuais detalhados
+                <li className="flex items-start">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 mt-0.5">✓</span>
+                  <span className="text-gray-700">Sincronização em tempo real</span>
                 </li>
               </ul>
             </CardContent>
@@ -57,33 +84,28 @@ export default function Features() {
             <CardHeader className="pb-6">
               <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9 12l2 2 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" className="text-green-600"/>
-                  <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" strokeWidth="2" fill="none"/>
+                  <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-green-600"/>
                 </svg>
               </div>
-              <CardTitle className="text-2xl">Recomendações Automáticas</CardTitle>
+              <CardTitle className="text-2xl">Automação de Ações</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-600 mb-4">
-                Para cada problema identificado, geramos soluções específicas e 
-                personalizadas, como um especialista recomendando as soluções ideais.
+              <p className="text-gray-600 mb-6">
+                Pare de reagir aos problemas. Nossa plataforma executa ações preventivas automaticamente, 
+                como um assistente que cuida do seu negócio 24/7.
               </p>
-              <ul className="space-y-2 text-sm text-gray-600">
-                <li className="flex items-center">
-                  <span className="w-1.5 h-1.5 bg-green-500 rounded-full mr-2"></span>
-                  Soluções personalizadas
+              <ul className="space-y-3">
+                <li className="flex items-start">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 mt-0.5">✓</span>
+                  <span className="text-gray-700">Campanhas de retenção automáticas</span>
                 </li>
-                <li className="flex items-center">
-                  <span className="w-1.5 h-1.5 bg-green-500 rounded-full mr-2"></span>
-                  Planos de ação detalhados
+                <li className="flex items-start">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 mt-0.5">✓</span>
+                  <span className="text-gray-700">Ajustes de preços inteligentes</span>
                 </li>
-                <li className="flex items-center">
-                  <span className="w-1.5 h-1.5 bg-green-500 rounded-full mr-2"></span>
-                  Priorização inteligente
-                </li>
-                <li className="flex items-center">
-                  <span className="w-1.5 h-1.5 bg-green-500 rounded-full mr-2"></span>
-                  ROI projetado
+                <li className="flex items-start">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 mt-0.5">✓</span>
+                  <span className="text-gray-700">Alertas preditivos de riscos</span>
                 </li>
               </ul>
             </CardContent>
@@ -92,31 +114,30 @@ export default function Features() {
           <Card className="relative overflow-hidden">
             <CardHeader className="pb-6">
               <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                <span className="text-2xl">🔄</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2" fill="none"/>
+                  <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="text-purple-600"/>
+                </svg>
               </div>
-              <CardTitle className="text-2xl">Cicatrização Contínua</CardTitle>
+              <CardTitle className="text-2xl">Inteligência de Anúncios</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-600 mb-4">
-                Monitoramento contínuo garante que as melhorias implementadas sejam 
-                sustentáveis e que novos problemas sejam detectados rapidamente.
+              <p className="text-gray-600 mb-6">
+                Chega de queimar dinheiro em ads que não convertem. Nossa IA otimiza campanhas 
+                automaticamente e encontra oportunidades que você não vê.
               </p>
-              <ul className="space-y-2 text-sm text-gray-600">
-                <li className="flex items-center">
-                  <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mr-2"></span>
-                  Monitoramento em tempo real
+              <ul className="space-y-3">
+                <li className="flex items-start">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 mt-0.5">✓</span>
+                  <span className="text-gray-700">Análise de ROI por canal em tempo real</span>
                 </li>
-                <li className="flex items-center">
-                  <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mr-2"></span>
-                  Alertas proativos
+                <li className="flex items-start">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 mt-0.5">✓</span>
+                  <span className="text-gray-700">Otimização automática de orçamentos</span>
                 </li>
-                <li className="flex items-center">
-                  <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mr-2"></span>
-                  Relatórios de progresso
-                </li>
-                <li className="flex items-center">
-                  <span className="w-1.5 h-1.5 bg-purple-500 rounded-full mr-2"></span>
-                  Otimização contínua
+                <li className="flex items-start">
+                  <span className="w-5 h-5 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xs mr-3 mt-0.5">✓</span>
+                  <span className="text-gray-700">Descoberta de novos públicos lucrativos</span>
                 </li>
               </ul>
             </CardContent>

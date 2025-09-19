@@ -1,10 +1,11 @@
 {
+  "/api/user/complete-onboarding/route": "app/api/user/complete-onboarding/route.js",
+  "/api/subscription/route": "app/api/subscription/route.js",
   "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
-  "/api/user/onboarding-status/route": "app/api/user/onboarding-status/route.js",
-  "/api/analysis/revenue-concentration/route": "app/api/analysis/revenue-concentration/route.js",
-  "/api/analysis/churn-risk/route": "app/api/analysis/churn-risk/route.js",
-  "/api/analysis/monthly-revenue/route": "app/api/analysis/monthly-revenue/route.js",
-  "/page": "app/page.js",
-  "/dashboard/import/page": "app/dashboard/import/page.js",
-  "/dashboard/page": "app/dashboard/page.js"
+  "/dashboard/page": "app/dashboard/page.js",
+  "/features/page": "app/features/page.js",
+  "/pricing/page": "app/pricing/page.js",
+  "/register/page": "app/register/page.js",
+  "/integrations/page": "app/integrations/page.js",
+  "/settings/billing/page": "app/settings/billing/page.js"
 }

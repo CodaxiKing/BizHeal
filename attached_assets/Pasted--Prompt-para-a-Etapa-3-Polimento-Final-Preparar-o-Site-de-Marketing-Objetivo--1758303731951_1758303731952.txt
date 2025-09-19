@@ -1,0 +1,35 @@
+
+---
+
+### Prompt para a Etapa 3: Polimento Final - Preparar o Site de Marketing
+
+**Objetivo:** Transformar o site de marketing (`apps/web`) de um esqueleto para uma vitrine profissional e convincente, pronta para atrair os primeiros clientes.
+
+```prompt
+[INSTRUÇÃO GERAL]
+Aja como um Redator de Marketing (Copywriter) e Desenvolvedor Web. Sua tarefa é preencher todo o conteúdo do site de marketing do BizHeal (`apps/web`) com textos persuasivos e profissionais.
+
+[CONTEXTO]
+O site já tem as páginas (`/`, `/features`, `/pricing`), mas precisa de conteúdo que explique claramente a proposta de valor e incentive o cadastro.
+
+[REQUISITOS]
+
+**1. Página Inicial (`/`):**
+- **Título Principal (Headline):** Crie um título forte, focado na dor do cliente. Ex: "Sua empresa está perdendo dinheiro? Descubra onde."
+- **Subtítulo:** Elabore o benefício. Ex: "BizHeal é a plataforma de inteligência que diagnostica ineficiências ocultas e automatiza ações para aumentar seu lucro."
+- **Seção "Como Funciona":** Crie 3 passos simples com ícones: 1. Conecte seus dados. 2. Receba diagnósticos automáticos. 3. Aja com recomendações inteligentes.
+- **Seção "Para Quem é?":** Descreva 2 ou 3 perfis de clientes ideais (ex: "Donos de E-commerce", "Agências de Marketing").
+- **Prova Social (Placeholder):** Adicione uma seção para depoimentos de clientes (com placeholders).
+
+**2. Página de Funcionalidades (`/features`):**
+- Para cada funcionalidade principal (Scanner de Diagnóstico, Integrações, Automação de Ações, Inteligência de Anúncios), crie uma seção dedicada.
+- Cada seção deve ter:
+    - **Nome da Funcionalidade:** (ex: "Scanner de Saúde do Negócio").
+    - **Descrição focada no benefício:** (ex: "Não apenas veja gráficos. Encontre exatamente onde seus processos estão falhando e quanto isso está custando ao seu negócio.").
+    - **Uma lista de 2-3 itens:** (ex: "✓ Identifique clientes em risco de churn ✓ Monitore a concentração de receita ✓ Encontre custos desnecessários").
+
+**3. Página de Preços (`/pricing`):**
+- Crie uma tabela de preços com 3 colunas: **Básico (Grátis)**, **Pro** e **Enterprise**.
+- Para cada plano, liste as principais funcionalidades incluídas. O plano gratuito deve ser limitado (ex: "1 integração", "3 relatórios/mês").
+- Adicione um botão de Call to Action (CTA) claro para cada plano ("Comece de Graça", "Escolher Plano Pro").
+- Inclua uma seção de **FAQ (Perguntas Frequentes)** abaixo da tabela para responder a objeções comuns (ex: "Meus dados estão seguros?", "Como funciona o cancelamento?").
