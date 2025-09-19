@@ -17,10 +17,10 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-args = "BizHeal App (SaaS Platform)"
+args = "BizHeal SaaS App"
 
 [[workflows.workflow]]
-name = "BizHeal App (SaaS Platform)"
+name = "BizHeal SaaS App"
 author = "agent"
 
 [[workflows.workflow.tasks]]
@@ -36,12 +36,12 @@ localPort = 5000
 externalPort = 80
 
 [[ports]]
-localPort = 38559
-externalPort = 3000
-
-[[ports]]
 localPort = 38735
 externalPort = 3001
+
+[[ports]]
+localPort = 40621
+externalPort = 3000
 
 [[ports]]
 localPort = 46113
@@ -54,4 +54,4 @@ externalPort = 3003
 [deployment]
 deploymentTarget = "autoscale"
 run = ["bash", "-c", "cd apps/app && pnpm start"]
-build = ["pnpm", "build"]
+build = ["bash", "-c", "cd apps/app && pnpm build"]
