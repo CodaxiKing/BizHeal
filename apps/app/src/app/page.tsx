@@ -127,6 +127,94 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Automation Section - Inspired by Conta Azul */}
+      <section className="py-20 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="mb-8">
+            <div className="inline-flex items-center bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+              <svg className="w-5 h-5 text-white mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+              <span className="text-white text-sm font-medium">+ de 100 mil relatórios gerados</span>
+            </div>
+            
+            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+              Deixe a gente <span className="text-yellow-400">trabalhar por você!</span>
+            </h2>
+            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+              Não precisa se preocupar com responsabilidades. Nossa plataforma cuida de tudo 
+              para que você possa focar no crescimento do seu negócio.
+            </p>
+            
+            <Button 
+              size="lg" 
+              className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 text-lg px-8 py-4 font-semibold rounded-full mb-16"
+              onClick={() => router.push('/register')}
+            >
+              Teste Grátis
+            </Button>
+          </div>
+
+          {/* Dashboard Preview */}
+          <div className="relative max-w-5xl mx-auto mb-16">
+            <div className="bg-white rounded-2xl shadow-2xl p-8">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                <div className="bg-gray-50 rounded-lg p-4">
+                  <div className="text-sm text-gray-500 mb-2">Receita Mensal</div>
+                  <div className="text-2xl font-bold text-green-600">R$ 125.890,00</div>
+                  <div className="text-xs text-green-500">↗ +23% vs mês anterior</div>
+                </div>
+                <div className="bg-gray-50 rounded-lg p-4">
+                  <div className="text-sm text-gray-500 mb-2">Despesas</div>
+                  <div className="text-2xl font-bold text-orange-600">R$ 48.450,00</div>
+                  <div className="text-xs text-red-500">↗ +5% vs mês anterior</div>
+                </div>
+                <div className="bg-gray-50 rounded-lg p-4">
+                  <div className="text-sm text-gray-500 mb-2">Lucro Líquido</div>
+                  <div className="text-2xl font-bold text-blue-600">R$ 77.440,00</div>
+                  <div className="text-xs text-green-500">↗ +35% vs mês anterior</div>
+                </div>
+              </div>
+              
+              {/* Simulated Chart */}
+              <div className="bg-gray-50 rounded-lg p-4 h-32">
+                <div className="text-sm text-gray-500 mb-4">Fluxo de Caixa - Últimos 6 meses</div>
+                <svg className="w-full h-16" viewBox="0 0 300 60">
+                  <polyline
+                    fill="none"
+                    stroke="#3B82F6"
+                    strokeWidth="3"
+                    points="0,50 50,45 100,35 150,30 200,20 250,15 300,10"
+                  />
+                  <circle cx="300" cy="10" r="4" fill="#3B82F6" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          {/* Statistics */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="text-4xl sm:text-5xl font-bold text-yellow-400 mb-2">+ de 25.000</div>
+              <div className="text-lg font-medium text-white mb-2">Empresas</div>
+              <div className="text-blue-100 text-sm">confiam na gestão financeira com o BizHeal</div>
+            </div>
+            
+            <div className="text-center">
+              <div className="text-4xl sm:text-5xl font-bold text-yellow-400 mb-2">+ de 5.000.000</div>
+              <div className="text-lg font-medium text-white mb-2">Transações</div>
+              <div className="text-blue-100 text-sm">processadas em nossa plataforma todos os meses</div>
+            </div>
+            
+            <div className="text-center">
+              <div className="text-4xl sm:text-5xl font-bold text-yellow-400 mb-2">40h por mês</div>
+              <div className="text-lg font-medium text-white mb-2">De economia</div>
+              <div className="text-blue-100 text-sm">média para quem confia nas automações do BizHeal</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* System Description */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -333,6 +421,89 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              Tá com dúvida? <span className="text-blue-600">A gente explica.</span>
+            </h2>
+          </div>
+
+          <div className="space-y-4">
+            {/* FAQ Item 1 */}
+            <details className="group bg-white rounded-lg border border-gray-200 overflow-hidden">
+              <summary className="flex justify-between items-center p-6 cursor-pointer hover:bg-gray-50 transition-colors">
+                <span className="text-lg font-medium text-gray-900">O que é gestão financeira inteligente e como funciona?</span>
+                <svg className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-6 pb-6 text-gray-600">
+                A gestão financeira inteligente é um sistema que utiliza IA e automação para analisar seus dados financeiros, 
+                identificar padrões e fornecer insights práticos para otimizar a saúde financeira do seu negócio.
+              </div>
+            </details>
+
+            {/* FAQ Item 2 */}
+            <details className="group bg-white rounded-lg border border-gray-200 overflow-hidden">
+              <summary className="flex justify-between items-center p-6 cursor-pointer hover:bg-gray-50 transition-colors">
+                <span className="text-lg font-medium text-gray-900">Quais segmentos podem ser atendidos pela plataforma BizHeal?</span>
+                <svg className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-6 pb-6 text-gray-600">
+                O BizHeal atende diversos segmentos: e-commerce, varejo, prestação de serviços, consultorias, 
+                agências, restaurantes, clínicas e qualquer negócio que precise de controle financeiro eficiente.
+              </div>
+            </details>
+
+            {/* FAQ Item 3 */}
+            <details className="group bg-white rounded-lg border border-gray-200 overflow-hidden">
+              <summary className="flex justify-between items-center p-6 cursor-pointer hover:bg-gray-50 transition-colors">
+                <span className="text-lg font-medium text-gray-900">Quais são as principais funcionalidades do BizHeal?</span>
+                <svg className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-6 pb-6 text-gray-600">
+                Controle de fluxo de caixa, análise de churn, previsões financeiras, relatórios inteligentes, 
+                dashboard personalizado, integração com sistemas externos e insights automáticos de IA.
+              </div>
+            </details>
+
+            {/* FAQ Item 4 */}
+            <details className="group bg-white rounded-lg border border-gray-200 overflow-hidden">
+              <summary className="flex justify-between items-center p-6 cursor-pointer hover:bg-gray-50 transition-colors">
+                <span className="text-lg font-medium text-gray-900">Como funcionam as integrações do BizHeal?</span>
+                <svg className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-6 pb-6 text-gray-600">
+                O BizHeal se conecta automaticamente com Shopify, sistemas bancários, ERPs e planilhas CSV. 
+                Os dados são sincronizados em tempo real para análises sempre atualizadas.
+              </div>
+            </details>
+
+            {/* FAQ Item 5 */}
+            <details className="group bg-white rounded-lg border border-gray-200 overflow-hidden">
+              <summary className="flex justify-between items-center p-6 cursor-pointer hover:bg-gray-50 transition-colors">
+                <span className="text-lg font-medium text-gray-900">Quais são as vantagens e benefícios de usar o BizHeal?</span>
+                <svg className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-6 pb-6 text-gray-600">
+                Economia de até 40h mensais, decisões baseadas em dados reais, redução de erros manuais, 
+                previsibilidade financeira, identificação de oportunidades e controle total do seu negócio.
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-16 bg-blue-600">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
@@ -357,10 +528,140 @@ export default function HomePage() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-50 border-t">
-        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <p className="text-gray-500">© 2024 BizHeal. Todos os direitos reservados.</p>
+      <footer className="bg-white border-t border-gray-200">
+        <div className="max-w-7xl mx-auto">
+          {/* Main Footer Content */}
+          <div className="px-4 sm:px-6 lg:px-8 py-12">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
+              {/* BizHeal */}
+              <div className="col-span-1">
+                <h3 className="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-4">BizHeal</h3>
+                <ul className="space-y-3">
+                  <li><a href="/features" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Sobre</a></li>
+                  <li><a href="/insights" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Blog</a></li>
+                  <li><a href="/pricing" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Gestão Financeira</a></li>
+                  <li><a href="/register" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Tire dúvidas</a></li>
+                  <li><a href="/dashboard" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Programa de Afiliados</a></li>
+                  <li><a href="/integrations" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Parceiros e Integrações</a></li>
+                  <li><a href="/settings" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Carreira</a></li>
+                </ul>
+              </div>
+
+              {/* Funcionalidades */}
+              <div className="col-span-1">
+                <h3 className="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-4">Funcionalidades</h3>
+                <ul className="space-y-3">
+                  <li><a href="/dashboard" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Gestão de Vendas e Clientes</a></li>
+                  <li><a href="/dashboard/import" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Fluxo de Caixa Futuro</a></li>
+                  <li><a href="/insights" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Controle de Estoque</a></li>
+                  <li><a href="/integrations" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Controle de Comissões</a></li>
+                  <li><a href="/dashboard" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Emissão de Nota Fiscal</a></li>
+                  <li><a href="/insights" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Relatórios e BI</a></li>
+                  <li><a href="/integrations" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Gestão Financeira</a></li>
+                  <li><a href="/dashboard" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Gestão de Contratos</a></li>
+                  <li><a href="/insights" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Controle com contador</a></li>
+                </ul>
+              </div>
+
+              {/* Soluções */}
+              <div className="col-span-1">
+                <h3 className="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-4">Soluções</h3>
+                <ul className="space-y-3">
+                  <li><a href="/features" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Barbearias</a></li>
+                  <li><a href="/features" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Clínicas</a></li>
+                  <li><a href="/features" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Consultórios</a></li>
+                  <li><a href="/features" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Escritórios</a></li>
+                  <li><a href="/features" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Prestadores</a></li>
+                  <li><a href="/features" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Academias</a></li>
+                  <li><a href="/features" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Tecnologia</a></li>
+                  <li><a href="/features" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Marketing</a></li>
+                  <li><a href="/features" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Comércio Atacadista</a></li>
+                  <li><a href="/features" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Confecções</a></li>
+                  <li><a href="/features" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">CRM Empresas</a></li>
+                </ul>
+              </div>
+
+              {/* Aprenda */}
+              <div className="col-span-1">
+                <h3 className="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-4">Aprenda</h3>
+                <ul className="space-y-3">
+                  <li><a href="/insights" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Blog</a></li>
+                  <li><a href="/features" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Manual Fiscal</a></li>
+                  <li><a href="/pricing" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Gestão Empresarial</a></li>
+                  <li><a href="/insights" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Segurança</a></li>
+                  <li><a href="/features" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Empreendedorismo</a></li>
+                  <li><a href="/insights" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Certificado de Segurança</a></li>
+                  <li><a href="/pricing" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Central de Ajuda</a></li>
+                  <li><a href="/features" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Integração</a></li>
+                  <li><a href="/insights" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Implementações</a></li>
+                </ul>
+              </div>
+
+              {/* BizHeal Mais */}
+              <div className="col-span-1">
+                <h3 className="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-4">BizHeal Mais</h3>
+                <ul className="space-y-3">
+                  <li><a href="/integrations" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Instagram</a></li>
+                  <li><a href="/integrations" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">LinkedIn</a></li>
+                  <li><a href="/integrations" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">YouTube</a></li>
+                  <li><a href="/integrations" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">WhatsApp</a></li>
+                </ul>
+
+                <div className="mt-8">
+                  <h4 className="text-sm font-semibold text-gray-900 mb-4">Certificados</h4>
+                  <div className="flex space-x-2">
+                    <div className="w-16 h-12 bg-gray-100 rounded flex items-center justify-center">
+                      <span className="text-xs text-gray-500">SSL</span>
+                    </div>
+                    <div className="w-16 h-12 bg-gray-100 rounded flex items-center justify-center">
+                      <span className="text-xs text-gray-500">ISO</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Canais de Atendimento */}
+          <div className="border-t border-gray-200 bg-gray-50">
+            <div className="px-4 sm:px-6 lg:px-8 py-8">
+              <h3 className="text-lg font-semibold text-gray-900 mb-6">Canais de atendimento</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                  <h4 className="text-sm font-semibold text-gray-900 mb-2">Antes de ser cliente</h4>
+                  <p className="text-sm text-gray-600">WhatsApp</p>
+                  <p className="text-sm text-blue-600">(11) 99999-9999</p>
+                </div>
+                <div>
+                  <h4 className="text-sm font-semibold text-gray-900 mb-2">Já sou cliente</h4>
+                  <p className="text-sm text-gray-600">WhatsApp</p>
+                  <p className="text-sm text-blue-600">(11) 88888-8888</p>
+                  <p className="text-sm text-gray-500 mt-1">Segunda a Sexta das 8h às 18h</p>
+                </div>
+                <div>
+                  <h4 className="text-sm font-semibold text-gray-900 mb-2">Exclusivo para Serviços Financeiros</h4>
+                  <p className="text-sm text-gray-600">Consulte</p>
+                  <p className="text-sm text-blue-600">(11) 77777-7777</p>
+                  <p className="text-sm text-gray-500 mt-1">Atendimento Especializado</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Footer */}
+          <div className="border-t border-gray-200 bg-white">
+            <div className="px-4 sm:px-6 lg:px-8 py-6">
+              <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                <div className="text-sm text-gray-500">
+                  © 2024 BizHeal S.A. - São Paulo, SP - 01.234.567/0001-89 - bizheal.com.br
+                </div>
+                <div className="flex space-x-6 text-sm text-gray-500">
+                  <a href="/privacy" className="hover:text-blue-600 transition-colors">Política de Privacidade</a>
+                  <a href="/terms" className="hover:text-blue-600 transition-colors">Termos de Uso</a>
+                  <a href="/cookies" className="hover:text-blue-600 transition-colors">Política de Cookies</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
