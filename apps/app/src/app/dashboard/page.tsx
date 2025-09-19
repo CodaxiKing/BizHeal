@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle, Button } from '@bizheal/ui'
 import CustomerHealthSection from '@/components/CustomerHealthSection'
 import MonthlyRevenueChart from '@/components/MonthlyRevenueChart'
 import RevenueConcentrationCard from '@/components/RevenueConcentrationCard'
+import OnboardingTour from '@/components/onboarding/OnboardingTour'
 
 export default function DashboardPage() {
   const { data: session, status } = useSession()
@@ -127,7 +128,7 @@ export default function DashboardPage() {
               <span className="text-sm text-gray-500">
                 Olá, {session.user?.name || session.user?.email}
               </span>
-              <Button variant="outline" size="sm" onClick={() => router.push('/settings/billing')}>
+              <Button id="settings-button" variant="outline" size="sm" onClick={() => router.push('/settings/billing')}>
                 Configurações
               </Button>
             </div>
@@ -138,7 +139,7 @@ export default function DashboardPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Welcome Message */}
         <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">
+          <h2 id="dashboard-title" className="text-3xl font-bold text-gray-900 mb-2">
             Dashboard Empresarial
           </h2>
           <p className="text-gray-600">
@@ -200,7 +201,7 @@ export default function DashboardPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Health Scanner */}
-          <Card className="lg:col-span-1">
+          <Card id="churn-scanner-card" className="lg:col-span-1">
             <CardHeader>
               <CardTitle className="flex items-center">
                 <svg className="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -285,6 +286,7 @@ export default function DashboardPage() {
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <Button 
+                  id="integrations-button"
                   onClick={() => router.push('/dashboard/import')}
                   className="h-20 flex flex-col items-center justify-center"
                 >
@@ -316,6 +318,9 @@ export default function DashboardPage() {
           </Card>
         </div>
       </div>
+      
+      {/* Onboarding Tour */}
+      <OnboardingTour />
     </div>
   )
 }

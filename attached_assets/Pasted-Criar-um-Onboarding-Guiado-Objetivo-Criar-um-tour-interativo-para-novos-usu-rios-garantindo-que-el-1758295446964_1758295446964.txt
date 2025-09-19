@@ -1,0 +1,47 @@
+Criar um Onboarding Guiado
+Objetivo: Criar um tour interativo para novos usuários, garantindo que eles entendam como usar o BizHeal assim que entram.
+
+[INSTRUÇÃO GERAL]
+Aja como um Desenvolvedor Frontend Sênior especializado em Experiência do Usuário. Sua tarefa é implementar um tour de onboarding guiado na plataforma BizHeal (`apps/app`) usando a biblioteca `react-joyride`.
+
+[CONTEXTO]
+O objetivo é guiar novos usuários pelas funcionalidades principais do dashboard logo após o primeiro login. A estrutura do projeto é um monorepo com Next.js e Shadcn/UI.
+
+[REQUISITOS]
+
+**1. Instalação e Configuração:**
+- Adicione a biblioteca `react-joyride` ao workspace `apps/app`.
+- Crie um novo componente em `apps/app/components/onboarding/OnboardingTour.tsx`.
+
+**2. Alteração no Banco de Dados (`packages/db`):**
+- No `schema.prisma`, adicione um novo campo ao modelo `User`:
+  ```prisma
+  model User {
+    // ... campos existentes
+    hasCompletedOnboarding Boolean @default(false)
+  }
+
+Isso controlará se o tour deve ou não ser exibido para o usuário. Lembre o usuário de rodar pnpm prisma generate e pnpm prisma migrate dev.
+
+3. Lógica do Componente OnboardingTour.tsx:
+
+O componente deve buscar o status hasCompletedOnboarding do usuário logado. O tour só deve ser renderizado se o status for false.
+
+Configure um tour com 3 a 4 passos. Crie um array de steps com:
+
+Step 1: Target no título do Dashboard (ex: #dashboard-title), explicando: "Bem-vindo ao seu centro de comando!"
+
+Step 2: Target no menu lateral para a página de Integrações (ex: #integrations-link), explicando: "O primeiro passo é conectar seus dados aqui."
+
+Step 3: Target no card de "Scanner de Churn" (ex: #churn-scanner-card), explicando: "Depois de conectar, os diagnósticos sobre a saúde do seu negócio aparecerão aqui."
+
+Step 4: Target no menu de configurações/perfil do usuário, explicando: "Você pode gerenciar sua conta e assinatura aqui."
+
+Use a função callback do react-joyride para detectar quando o tour for concluído ou pulado. Quando isso acontecer, chame um endpoint da sua API para atualizar o campo hasCompletedOnboarding do usuário para true no banco de dados.
+
+4. Integração no Dashboard:
+
+Importe e utilize o componente OnboardingTour na página principal do dashboard (/dashboard/page.tsx).
+
+Crie o endpoint na sua API NestJS para lidar com a atualização do status do onboarding do usuário.
+  

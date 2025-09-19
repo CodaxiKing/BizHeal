@@ -11,11 +11,6 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
-    "/pricing/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/pricing/page.js"
-    ],
     "/api/auth/[...nextauth]/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -31,6 +26,11 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/analysis/churn-risk/route.js"
     ],
+    "/api/user/onboarding-status/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/user/onboarding-status/route.js"
+    ],
     "/api/analysis/monthly-revenue/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -41,15 +41,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/api/analysis/revenue-concentration/route.js"
     ],
-    "/login/page": [
+    "/dashboard/import/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/login/page.js"
-    ],
-    "/register/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/register/page.js"
+      "static/chunks/app/dashboard/import/page.js"
     ]
   }
 }
