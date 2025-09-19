@@ -112,6 +112,7 @@ model BusinessProfile {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   transactions Transaction[]
   integrations Integration[]
+  notifications Notification[]
 }
 
 // Transaction data for business analysis
@@ -147,4 +148,17 @@ model Integration {
   updatedAt DateTime @updatedAt
 
   @@unique([businessId, platform]) // Uma empresa só pode ter uma integração por plataforma
+}
+
+// Notification system for business insights alerts
+model Notification {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  read        Boolean  @default(false)
+  type        String   // ex: "churn_alert", "concentration_risk"
+  businessId  String
+  business    BusinessProfile @relation(fields: [businessId], references: [id])
+
+  createdAt DateTime @default(now())
 }

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@bizheal/db'
+import { NotificationService } from '@/services/NotificationService'
 import Papa from 'papaparse'
 
 interface CustomerActivity {
@@ -214,6 +215,13 @@ export async function GET(request: NextRequest) {
         }
       })
     }
+
+    // Check and create churn notification if needed
+    await NotificationService.checkAndCreateChurnNotification(
+      businessId,
+      response.totalCustomers,
+      response.atRiskCustomersCount
+    )
 
     return NextResponse.json(response)
 

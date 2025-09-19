@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@bizheal/db'
 import { AnalysisService, type RevenueConcentrationResult } from '@/services/AnalysisService'
+import { NotificationService } from '@/services/NotificationService'
 
 export async function GET(request: NextRequest) {
   try {
@@ -44,6 +45,12 @@ export async function GET(request: NextRequest) {
 
     // Calculate revenue concentration using the AnalysisService
     const concentrationResult = AnalysisService.calculateRevenueConcentration(transactions)
+
+    // Check and create concentration notification if needed
+    await NotificationService.checkAndCreateConcentrationNotification(
+      businessProfile.id,
+      concentrationResult.concentrationPercentage
+    )
 
     return NextResponse.json(concentrationResult)
 
