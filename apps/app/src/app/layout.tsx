@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'BizHeal App - Painel de Controle',
-  description: 'Painel de controle do BizHeal - Gerencie a saúde da sua empresa',
+  description: 'Painel de controle do BizHeal - Gerencie a performance da sua empresa',
   keywords: ['business', 'analytics', 'dashboard', 'saas'],
 }
 

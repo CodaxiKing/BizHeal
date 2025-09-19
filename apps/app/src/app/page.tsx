@@ -41,40 +41,36 @@ export default function HomePage() {
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <div className="flex-shrink-0 flex items-center">
-                <span className="text-2xl mr-2">🩺</span>
-                <h1 className="text-xl font-bold text-gray-900">BizHeal</h1>
+                <h1 className="text-xl font-bold text-primary">BizHeal</h1>
               </div>
             </div>
             <div className="flex items-center space-x-6">
               <button 
                 onClick={() => router.push('/')}
-                className="text-gray-700 hover:text-blue-600"
+                className="text-muted-foreground hover:text-primary transition-colors"
               >
                 Início
               </button>
-              <a 
-                href="/features"
-                target="_blank"
-                className="text-gray-700 hover:text-blue-600"
+              <button 
+                onClick={() => router.push('/features')}
+                className="text-muted-foreground hover:text-primary transition-colors"
               >
                 Funcionalidades
-              </a>
-              <a 
-                href="/pricing"
-                target="_blank"
-                className="text-gray-700 hover:text-blue-600"
+              </button>
+              <button 
+                onClick={() => router.push('/pricing')}
+                className="text-muted-foreground hover:text-primary transition-colors"
               >
                 Preços
-              </a>
+              </button>
               <button 
                 onClick={() => router.push('/login')}
-                className="text-gray-700 hover:text-blue-600"
+                className="text-muted-foreground hover:text-primary transition-colors"
               >
                 Login
               </button>
               <Button 
                 onClick={() => router.push('/register')}
-                className="bg-blue-600 hover:bg-blue-700"
                 size="sm"
               >
                 Começar Grátis
@@ -89,12 +85,12 @@ export default function HomePage() {
       <section className="bg-gradient-to-b from-white to-gray-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl sm:text-6xl font-bold text-gray-900 mb-6">
-              O Médico Digital<br />da sua Empresa
+            <h1 className="text-4xl sm:text-6xl font-bold text-foreground mb-6">
+              Inteligência Empresarial<br />para seu Negócio
             </h1>
-            <p className="text-xl sm:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Diagnosticamos problemas ocultos no seu negócio e prescrevemos soluções precisas 
-              para curar ineficiências e acelerar seu crescimento.
+            <p className="text-xl sm:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+              Analisamos dados do seu negócio com IA avançada e oferecemos insights precisos 
+              para otimizar processos e acelerar seu crescimento.
             </p>
             <div className="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
               <Button 
@@ -102,7 +98,7 @@ export default function HomePage() {
                 className="w-full sm:w-auto text-lg px-8 py-4"
                 onClick={() => router.push('/register')}
               >
-                Comece seu Diagnóstico Grátis
+                Comece sua Análise Grátis
               </Button>
               <Button 
                 variant="outline" 
@@ -121,77 +117,89 @@ export default function HomePage() {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Sua Empresa Está Doente?
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+              Principais Desafios Empresariais
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Muitas empresas sofrem de sintomas silenciosos que drenam recursos e limitam o crescimento.
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Identificamos e solucionamos os principais gargalos que limitam o potencial de crescimento da sua empresa.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center p-6">
-              <div className="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl">📉</span>
+              <div className="bg-secondary w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Receita Estagnada</h3>
-              <p className="text-gray-600">Vendas não crescem apesar dos esforços da equipe</p>
+              <h3 className="text-xl font-semibold mb-2 text-foreground">Receita Estagnada</h3>
+              <p className="text-muted-foreground">Falta de insights sobre oportunidades de crescimento</p>
             </div>
             
             <div className="text-center p-6">
-              <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl">💸</span>
+              <div className="bg-secondary w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Custos Elevados</h3>
-              <p className="text-gray-600">Gastos desnecessários consomem a margem de lucro</p>
+              <h3 className="text-xl font-semibold mb-2 text-foreground">Custos Elevados</h3>
+              <p className="text-muted-foreground">Gastos operacionais sem controle adequado</p>
             </div>
             
             <div className="text-center p-6">
-              <div className="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl">⚠️</span>
+              <div className="bg-secondary w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Processos Lentos</h3>
-              <p className="text-gray-600">Ineficiências operacionais afetam a produtividade</p>
+              <h3 className="text-xl font-semibold mb-2 text-foreground">Processos Lentos</h3>
+              <p className="text-muted-foreground">Falta de automação em processos críticos</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Solution Section */}
-      <section className="bg-blue-600 text-white py-16">
+      <section className="bg-primary text-primary-foreground py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              A Receita para o Sucesso
+              Nossa Metodologia de Análise
             </h2>
             <p className="text-xl mb-12 opacity-90 max-w-2xl mx-auto">
-              Nossa IA analisa seus dados como um médico experiente, identificando problemas 
-              e prescrevendo soluções personalizadas.
+              Nossa plataforma de IA analisa seus dados empresariais de forma abrangente, 
+              identificando oportunidades e fornecendo recomendações estratégicas.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="text-center">
-                <div className="bg-white/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">🔍</span>
+                <div className="bg-white/10 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Diagnóstico Preciso</h3>
-                <p className="opacity-90">Scanner avançado identifica gargalos ocultos</p>
+                <h3 className="text-xl font-semibold mb-2">Análise Avançada</h3>
+                <p className="opacity-90">IA identifica padrões e oportunidades nos dados</p>
               </div>
               
               <div className="text-center">
-                <div className="bg-white/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">💊</span>
+                <div className="bg-white/10 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  </svg>
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Prescrição Inteligente</h3>
-                <p className="opacity-90">Soluções específicas para cada problema encontrado</p>
+                <h3 className="text-xl font-semibold mb-2">Insights Estratégicos</h3>
+                <p className="opacity-90">Recomendações personalizadas para seu negócio</p>
               </div>
               
               <div className="text-center">
-                <div className="bg-white/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">📈</span>
+                <div className="bg-white/10 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Recuperação Contínua</h3>
-                <p className="opacity-90">Monitoramento constante garante saúde duradoura</p>
+                <h3 className="text-xl font-semibold mb-2">Otimização Contínua</h3>
+                <p className="opacity-90">Monitoramento e ajustes para máxima eficiência</p>
               </div>
             </div>
           </div>
@@ -201,18 +209,18 @@ export default function HomePage() {
       {/* CTA Section */}
       <section className="py-16">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Pronto para Curar sua Empresa?
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+            Pronto para Otimizar seu Negócio?
           </h2>
-          <p className="text-xl text-gray-600 mb-8">
-            Junte-se a centenas de empresas que já transformaram sua saúde financeira com BizHeal.
+          <p className="text-xl text-muted-foreground mb-8">
+            Junte-se a centenas de empresas que já transformaram sua performance com BizHeal.
           </p>
           <Button 
             size="lg" 
             className="text-lg px-8 py-4"
             onClick={() => router.push('/register')}
           >
-            Iniciar Diagnóstico Gratuito
+            Iniciar Análise Gratuita
           </Button>
           <p className="text-sm text-gray-500 mt-4">
             Sem compromisso • Resultados em minutos • Totalmente seguro

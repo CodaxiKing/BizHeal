@@ -75,13 +75,15 @@ export default function CustomerHealthSection() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center">
-            <span className="mr-2">👥</span>
-            Saúde dos Clientes
+            <svg className="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Desempenho dos Clientes
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex items-center justify-center py-8">
-            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500 mr-2"></div>
+            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary mr-2"></div>
             <span>Analisando dados...</span>
           </div>
         </CardContent>
@@ -94,8 +96,10 @@ export default function CustomerHealthSection() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center">
-            <span className="mr-2">👥</span>
-            Saúde dos Clientes
+            <svg className="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Desempenho dos Clientes
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -114,8 +118,10 @@ export default function CustomerHealthSection() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center">
-            <span className="mr-2">👥</span>
-            Saúde dos Clientes
+            <svg className="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Desempenho dos Clientes
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -141,7 +147,7 @@ export default function CustomerHealthSection() {
       case 'high': return 'Alto Risco'
       case 'medium': return 'Médio Risco'
       case 'low': return 'Baixo Risco'
-      default: return 'Saudável'
+      default: return 'Estável'
     }
   }
 
@@ -201,7 +207,9 @@ export default function CustomerHealthSection() {
                 <p className="text-sm text-gray-600">Total de Clientes</p>
                 <p className="text-2xl font-bold">{data.totalCustomers}</p>
               </div>
-              <span className="text-2xl">👥</span>
+              <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
             </div>
           </CardContent>
         </Card>
@@ -216,7 +224,9 @@ export default function CustomerHealthSection() {
                   {data.atRiskCustomersCount}
                 </p>
               </div>
-              <span className="text-2xl">🚨</span>
+              <svg className="w-8 h-8 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+              </svg>
             </div>
           </CardContent>
         </Card>
@@ -228,7 +238,9 @@ export default function CustomerHealthSection() {
                 <p className="text-sm text-gray-600">Taxa de Churn</p>
                 <p className="text-2xl font-bold">{data.metrics.churnRate}%</p>
               </div>
-              <span className="text-2xl">📉</span>
+              <svg className="w-8 h-8 text-destructive" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
+              </svg>
             </div>
           </CardContent>
         </Card>
@@ -242,7 +254,9 @@ export default function CustomerHealthSection() {
                   R$ {(data.metrics.atRiskRevenue / 1000).toFixed(1)}k
                 </p>
               </div>
-              <span className="text-2xl">💸</span>
+              <svg className="w-8 h-8 text-destructive" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+              </svg>
             </div>
           </CardContent>
         </Card>
@@ -272,7 +286,7 @@ export default function CustomerHealthSection() {
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-green-600">{data.metrics.riskDistribution.healthy}</div>
-              <div className="text-sm text-gray-600">Saudáveis</div>
+              <div className="text-sm text-gray-600">Estáveis</div>
               <div className="text-xs text-gray-500">&lt;30 dias</div>
             </div>
           </div>
@@ -285,7 +299,9 @@ export default function CustomerHealthSection() {
           <CardHeader>
             <div className="flex items-center justify-between">
               <CardTitle className="flex items-center">
-                <span className="mr-2">⚠️</span>
+                <svg className="w-5 h-5 mr-2 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                </svg>
                 Clientes em Risco de Churn
               </CardTitle>
               <div className="flex flex-col items-end gap-2">
@@ -296,7 +312,9 @@ export default function CustomerHealthSection() {
                   className="flex items-center gap-2"
                   disabled={exportLoading || !data || data.atRiskCustomersCount === 0}
                 >
-                  <span>{exportLoading ? '⏳' : '📥'}</span>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
                   {exportLoading ? 'Exportando...' : 'Exportar para CSV'}
                 </Button>
                 {exportMessage && (

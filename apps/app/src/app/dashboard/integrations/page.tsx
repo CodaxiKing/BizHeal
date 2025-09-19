@@ -4,7 +4,7 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle, Button } from '@bizheal/ui'
-import { CheckCircle2, ExternalLink, RefreshCw, Loader2 } from 'lucide-react'
+// Replaced lucide-react icons with inline SVGs for consistency
 
 interface Integration {
   id: string
@@ -20,21 +20,21 @@ const AVAILABLE_INTEGRATIONS = [
     id: 'shopify',
     name: 'Shopify',
     description: 'Sincronize automaticamente seus pedidos e dados de vendas',
-    logo: '🛍️',
+    logo: 'store',
     status: 'available'
   },
   {
     id: 'bling',
     name: 'Bling',
     description: 'Conecte com seu ERP Bling para análise financeira',
-    logo: '📊',
+    logo: 'chart',
     status: 'coming_soon'
   },
   {
     id: 'conta_azul',
     name: 'Conta Azul',
     description: 'Importe dados financeiros do seu Conta Azul',
-    logo: '🧮',
+    logo: 'calculator',
     status: 'coming_soon'
   }
 ]
@@ -144,7 +144,9 @@ export default function IntegrationsPage() {
                         <div>
                           <CardTitle className="text-lg">{platformInfo?.name || integration.platform}</CardTitle>
                           <div className="flex items-center space-x-1 text-sm text-green-600">
-                            <CheckCircle2 className="h-4 w-4" />
+                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
                             <span>Conectado</span>
                           </div>
                         </div>
@@ -154,7 +156,9 @@ export default function IntegrationsPage() {
                   <CardContent className="space-y-3">
                     {integration.shopUrl && (
                       <div className="flex items-center space-x-2 text-sm text-gray-600">
-                        <ExternalLink className="h-4 w-4" />
+                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
                         <span className="truncate">{integration.shopUrl}</span>
                       </div>
                     )}
@@ -172,12 +176,16 @@ export default function IntegrationsPage() {
                       >
                         {syncing === 'shopify' ? (
                           <>
-                            <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                            <svg className="h-4 w-4 mr-2 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                            </svg>
                             Sincronizando...
                           </>
                         ) : (
                           <>
-                            <RefreshCw className="h-4 w-4 mr-2" />
+                            <svg className="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                            </svg>
                             Sincronizar Dados
                           </>
                         )}
@@ -208,7 +216,9 @@ export default function IntegrationsPage() {
                       <CardTitle className="text-lg">{platform.name}</CardTitle>
                       {isConnected && (
                         <div className="flex items-center space-x-1 text-sm text-green-600">
-                          <CheckCircle2 className="h-4 w-4" />
+                          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
                           <span>Conectado</span>
                         </div>
                       )}

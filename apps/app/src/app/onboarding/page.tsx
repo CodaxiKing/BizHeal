@@ -55,7 +55,7 @@ export default function OnboardingPage() {
     'Varejo',
     'Serviços',
     'Manufatura',
-    'Saúde',
+    'Serviços Gerais',
     'Educação',
     'Finanças',
     'Consultoria',

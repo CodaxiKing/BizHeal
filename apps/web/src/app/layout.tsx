@@ -6,7 +6,7 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'BizHeal - O Médico Digital da sua Empresa',
+  title: 'BizHeal - Plataforma de Inteligência Empresarial',
   description: 'Analisamos dados para encontrar ineficiências e sugerir soluções para sua empresa.',
   keywords: ['business', 'analytics', 'efficiency', 'saas', 'digital'],
 }

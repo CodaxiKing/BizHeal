@@ -83,7 +83,7 @@ export default function MonthlyRevenueChart() {
       return (
         <div className="bg-white p-3 border border-gray-300 rounded-lg shadow-lg">
           <p className="text-sm text-gray-600">{`Mês: ${label}`}</p>
-          <p className="text-sm font-semibold text-blue-600">
+          <p className="text-sm font-semibold text-primary">
             {`Faturamento: ${formatCurrency(payload[0].value)}`}
           </p>
         </div>
@@ -97,14 +97,16 @@ export default function MonthlyRevenueChart() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center">
-            <span className="mr-2">📊</span>
+            <svg className="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
             Faturamento Mensal (Últimos 12 Meses)
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex items-center justify-center h-64">
             <div className="text-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-4"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
               <p className="text-gray-600">Carregando dados...</p>
             </div>
           </div>
@@ -118,14 +120,18 @@ export default function MonthlyRevenueChart() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center">
-            <span className="mr-2">📊</span>
+            <svg className="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
             Faturamento Mensal (Últimos 12 Meses)
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex items-center justify-center h-64">
             <div className="text-center">
-              <div className="text-yellow-600 text-4xl mb-4">⚠️</div>
+              <svg className="w-12 h-12 text-warning mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+              </svg>
               <p className="text-gray-600">{error}</p>
               <p className="text-sm text-gray-500 mt-2">
                 Importe seus dados para ver o gráfico de faturamento
@@ -142,7 +148,9 @@ export default function MonthlyRevenueChart() {
       <CardHeader>
         <CardTitle className="flex items-center justify-between">
           <div className="flex items-center">
-            <span className="mr-2">📊</span>
+            <svg className="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
             Faturamento Mensal (Últimos 12 Meses)
           </div>
           {metrics && (
@@ -187,7 +195,7 @@ export default function MonthlyRevenueChart() {
               <Tooltip content={<CustomTooltip />} />
               <Bar 
                 dataKey="revenue" 
-                fill="#3b82f6"
+                fill="hsl(var(--primary))"
                 radius={[4, 4, 0, 0]}
                 className="hover:opacity-80 transition-opacity"
               />

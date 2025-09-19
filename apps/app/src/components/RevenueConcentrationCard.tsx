@@ -69,22 +69,22 @@ export default function RevenueConcentrationCard() {
     if (percentage > 50) {
       return {
         color: 'text-red-600 bg-red-100',
-        icon: '⚠️',
+        icon: 'warning',
         label: 'Risco Alto',
         textColor: 'text-red-600'
       }
     } else if (percentage >= 25) {
       return {
         color: 'text-yellow-600 bg-yellow-100',
-        icon: '🟡',
+        icon: 'caution',
         label: 'Atenção',
         textColor: 'text-yellow-600'
       }
     } else {
       return {
         color: 'text-green-600 bg-green-100',
-        icon: '✅',
-        label: 'Saudável',
+        icon: 'success',
+        label: 'Estável',
         textColor: 'text-green-600'
       }
     }
@@ -95,13 +95,15 @@ export default function RevenueConcentrationCard() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center">
-            <span className="mr-2">📊</span>
+            <svg className="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
             Risco de Concentração
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex items-center justify-center py-8">
-            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500 mr-2"></div>
+            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary mr-2"></div>
             <span>Analisando concentração...</span>
           </div>
         </CardContent>
@@ -114,7 +116,9 @@ export default function RevenueConcentrationCard() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center">
-            <span className="mr-2">📊</span>
+            <svg className="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
             Risco de Concentração
           </CardTitle>
         </CardHeader>
@@ -135,14 +139,20 @@ export default function RevenueConcentrationCard() {
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center">
-          <span className="mr-2">📊</span>
+          <svg className="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          </svg>
           Risco de Concentração
         </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="text-center mb-6">
           <div className={`inline-flex items-center justify-center w-20 h-20 rounded-full text-2xl font-bold ${concentrationLevel.color} mb-4`}>
-            <span className="mr-2">{concentrationLevel.icon}</span>
+            <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {concentrationLevel.icon === 'warning' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />}
+              {concentrationLevel.icon === 'caution' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />}
+              {concentrationLevel.icon === 'success' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />}
+            </svg>
             <span className="text-lg">{data.concentrationPercentage.toFixed(1)}%</span>
           </div>
           <div className={`text-sm font-medium ${concentrationLevel.textColor} mb-2`}>

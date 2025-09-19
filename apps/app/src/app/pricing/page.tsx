@@ -10,7 +10,7 @@ export default function Pricing() {
             Planos e Preços
           </h1>
           <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
-            Escolha o plano ideal para transformar a saúde do seu negócio
+            Escolha o plano ideal para transformar a performance do seu negócio
           </p>
         </div>
 
@@ -24,7 +24,7 @@ export default function Pricing() {
                 <span className="text-gray-500">/mês</span>
               </div>
               <p className="text-gray-600 mb-6">
-                Perfeito para pequenas empresas que querem começar o diagnóstico
+                Perfeito para pequenas empresas que querem começar a análise
               </p>
             </div>
             
@@ -125,7 +125,7 @@ export default function Pricing() {
                 <span className="text-gray-500">/mês</span>
               </div>
               <p className="text-gray-600 mb-6">
-                Para grandes empresas que precisam do máximo em diagnóstico e prescrição
+                Para grandes empresas que precisam do máximo em análise e recomendações estratégicas
               </p>
             </div>
             

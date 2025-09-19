@@ -47,7 +47,11 @@ externalPort = 3001
 localPort = 46113
 externalPort = 3002
 
+[[ports]]
+localPort = 46291
+externalPort = 3003
+
 [deployment]
 deploymentTarget = "autoscale"
-run = ["bash", "-c", "cd apps/app && pnpm start"]
-build = ["bash", "-c", "cd apps/app && pnpm build"]
+run = ["pnpm", "run", "start", "--filter=@bizheal/app"]
+build = ["pnpm", "run", "build", "--filter=@bizheal/app"]
